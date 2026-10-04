@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Personal Coach</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f6f7fb;color:#171923;font-family:Inter,Arial,sans-serif}
+button,input,textarea,select{font:inherit}.app{min-height:100vh;display:flex}.sidebar{width:240px;background:#fff;border-right:1px solid #e7e8ee;padding:22px 14px;position:fixed;top:0;bottom:0}
+.logo{font-size:18px;font-weight:800;padding:5px 10px 24px}.logo b{color:#5b5bd6}.nav{display:flex;flex-direction:column;gap:4px}.nav button{border:0;background:none;text-align:left;padding:11px 12px;border-radius:10px;color:#606572;cursor:pointer}.nav button:hover,.nav button.active{background:#eeeeff;color:#5555d5;font-weight:700}
+.content{margin-left:240px;width:calc(100% - 240px);padding:30px;max-width:1500px}.header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:25px}.kicker{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#777d89;font-weight:800}.title{font-size:31px;font-weight:800;margin:5px 0}.subtitle{color:#707683;margin:0}.grid{display:grid;gap:16px}.four{grid-template-columns:repeat(4,1fr)}.two{grid-template-columns:repeat(2,1fr)}.three{grid-template-columns:repeat(3,1fr)}
+.card{background:white;border:1px solid #e5e6eb;border-radius:16px;padding:20px;box-shadow:0 7px 24px rgba(20,25,50,.05)}.metric{font-size:30px;font-weight:800;margin:7px 0}.muted{color:#777d89;font-size:13px}.section{font-size:18px;font-weight:800;margin:28px 0 12px}.pill{display:inline-block;border-radius:99px;padding:5px 9px;background:#eeeefe;color:#5555d5;font-size:12px;font-weight:700}.pill.good{background:#e8f7ef;color:#168457}.pill.warn{background:#fff4df;color:#a86c0a}.pill.bad{background:#ffecec;color:#c74444}
+.barbg{height:8px;background:#ececf2;border-radius:10px;overflow:hidden;margin:10px 0}.bar{height:100%;background:#6262da;border-radius:10px}.skillhead{display:flex;justify-content:space-between;align-items:center}.skillname{font-weight:800}.band{font-size:24px;font-weight:800}.row{display:flex;gap:10px;align-items:center}.between{justify-content:space-between}.btn{border:1px solid #dedfe6;background:white;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:700}.btn.primary{background:#5b5bd6;color:white;border-color:#5b5bd6}.btn:hover{filter:brightness(.97)}
+.task{display:flex;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #eee}.task:last-child{border-bottom:0}.check{width:24px;height:24px;border:1px solid #cfd1da;border-radius:7px;background:white;cursor:pointer}.task.done .check{background:#168457;color:#fff}.task.done .tasktext{text-decoration:line-through;color:#777d89}
+.table{width:100%;border-collapse:collapse}.table th,.table td{text-align:left;border-bottom:1px solid #ececf0;padding:11px 7px;font-size:13px}.table th{color:#777d89}.input,.textarea,.select{width:100%;border:1px solid #dedfe6;border-radius:10px;padding:11px;background:white}.textarea{min-height:230px;resize:vertical}
+.chart{height:210px;display:flex;align-items:flex-end;gap:12px;border-bottom:1px solid #ddd;padding:15px}.chartcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px}.chartbar{width:70%;max-width:42px;background:#6262da;border-radius:7px 7px 0 0}
+.message{padding:13px 15px;border-radius:12px;margin:9px 0;line-height:1.5}.ai{background:#f0f1f6}.me{background:#eeeeff;margin-left:15%}
+@media(max-width:900px){.sidebar{width:70px}.logo{font-size:0}.logo b{font-size:18px}.nav button{font-size:0;text-align:center}.content{margin-left:70px;width:calc(100% - 70px);padding:20px}.four,.three{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.sidebar{display:none}.content{margin-left:0;width:100%;padding:16px}.four,.three,.two{grid-template-columns:1fr}.header{display:block}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+<div class="logo">IELTS <b>Personal Coach</b></div>
+<div class="nav" id="nav"></div>
+</aside>
+<main class="content" id="app"></main>
+</div>
+<script>
+(function(){
+"use strict";
+var initial={
+profile:{current:6.3,target:7,stretch:8,exam:"2028-06-15",hours:4.5,days:6},
+skills:{
+Listening:{band:6.5,target:7.5,accuracy:78,weak:"distractors / spelling",sessions:12},
+Reading:{band:6.5,target:7.5,accuracy:76,weak:"Matching Information",sessions:10},
+Writing:{band:5.8,target:7,accuracy:64,weak:"idea development / coherence",sessions:15},
+Speaking:{band:6.2,target:7,accuracy:72,weak:"lexical precision",sessions:8}
+},
+tasks:[
+{id:1,skill:"Listening",text:"Section 3 + distractor error analysis",mins:60,done:false},
+{id:2,skill:"Reading",text:"Matching Information targeted set",mins:60,done:false},
+{id:3,skill:"Writing",text:"Task 2 paragraph: Claim → Explanation → Example → Link",mins:80,done:false},
+{id:4,skill:"Speaking",text:"Part 2 recording + self-review",mins:30,done:false},
+{id:5,skill:"Vocabulary",text:"Review personalized collocations",mins:20,done:false}
+],
+vocab:[
+["mitigate","/ˈmɪtɪɡeɪt/","verb","C1","7.0+","giảm nhẹ, hạn chế","Learning"],
+["substantial","/səbˈstænʃəl/","adj","B2","6.5+","đáng kể","Reviewing"],
+["allocate","/ˈæləkeɪt/","verb","B2","6.5+","phân bổ","Mastered"]
+],
+errors:[
+["2026-09-11","Writing","Development","Example only","Example + mechanism + result",3],
+["2026-09-10","Listening","Distractor","Initial option","Final plan",2],
+["2026-09-08","Reading","Matching Information","C","E",4]
+],
+history:[6.0,6.1,6.15,6.2,6.25,6.3]
+};
+var state;
+try{state=JSON.parse(localStorage.getItem("ieltsPersonalCoach"))||initial}catch(e){state=initial}
+var page="Dashboard";
+var pages=["Dashboard","Roadmap","Today","Listening","Reading","Writing","Speaking","Vocabulary","Error Log","Mock Tests","Analytics","AI Coach","Settings"];
+function save(){try{localStorage.setItem("ieltsPersonalCoach",JSON.stringify(state))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function overall(){var a=0;Object.keys(state.skills).forEach(function(k){a+=state.skills[k].band});return a/4}
+function priority(){var best=null;Object.keys(state.skills).forEach(function(k){var gap=state.skills[k].target-state.skills[k].band;if(!best||gap>best.gap)best={name:k,gap:gap,data:state.skills[k]}});return best}
+function days(){return Math.max(0,Math.ceil((new Date(state.profile.exam)-new Date())/86400000))}
+function header(t,s){return '<div class="header"><div><div class="kicker">IELTS Personal Coach</div><div class="title">'+t+'</div><p class="subtitle">'+s+'</p></div><span class="pill">'+state.profile.hours+'h/day sustainable plan</span></div>'}
+function renderNav(){document.getElementById("nav").innerHTML=pages.map(function(p){return '<button class="'+(p===page?"active":"")+'" data-page="'+p+'">'+p+'</button>'}).join("")}
+function dashboard(){
+var p=priority();
+var skills=Object.keys(state.skills).map(function(k){var s=state.skills[k];return '<div class="card"><div class="skillhead"><div><div class="skillname">'+k+'</div><div class="muted">'+s.sessions+' sessions · '+s.accuracy+'% recent accuracy</div></div><div class="band">'+s.band.toFixed(1)+'</div></div><div class="barbg"><div class="bar" style="width:'+Math.min(100,s.band/8*100)+'%"></div></div><div class="row between"><span class="muted">Weakness: '+esc(s.weak)+'</span><span class="pill '+(s.band>=s.target?"good":"warn")+'">'+(s.band>=s.target?"On target":"Develop")+'</span></div></div>'}).join("");
+return header("What should I do today?","Your plan adapts to your performance — not the other way around.")+
+'<div class="grid four"><div class="card"><div class="muted">Estimated overall</div><div class="metric">'+overall().toFixed(1)+'</div><span class="pill">Target '+state.profile.target.toFixed(1)+'</span></div><div class="card"><div class="muted">Exam readiness</div><div class="metric">'+Math.round(Math.min(100,overall()/7*75+15))+'%</div><span class="pill warn">Estimate</span></div><div class="card"><div class="muted">Days to exam</div><div class="metric">'+days()+'</div><span class="muted">'+esc(state.profile.exam)+'</span></div><div class="card"><div class="muted">Study streak</div><div class="metric">7</div><span class="pill good">Sustainable</span></div></div>'+
+'<div class="section">Four-skill profile</div><div class="grid two">'+skills+'</div>'+
+'<div class="section">Highest-value activity</div><div class="card"><div class="row between"><div><b>Prioritize '+p.name+'</b><p class="subtitle">Largest current gap to target: '+p.gap.toFixed(1)+' band. Attack <b>'+esc(p.data.weak)+'</b> next.</p></div><button class="btn primary" id="todayBtn">Open today&#39;s plan</button></div></div>';
+}
+function roadmap(){return header("Personalized roadmap","A staged path from approximately 6.0–6.5 to 7.0, then 7.5–8.0.")+'<div class="grid two">'+[
+["Stage 1 — Diagnosis & Foundation","Establish baseline, identify recurring errors and build sustainable routines.",true],
+["Stage 2 — 6.5 → 7.0","Accuracy, vocabulary, grammar, question types, Writing development, Reading speed and Listening detail.",overall()>=6.3],
+["Stage 3 — 7.0 → 7.5","Precision, complex ideas, natural collocations, coherence and difficult questions.",overall()>=7],
+["Stage 4 — 7.5 → 8.0","Consistency, subtle meaning, inference, lexical control and grammatical flexibility.",overall()>=7.5]
+].map(function(x){return '<div class="card"><span class="pill '+(x[2]?"good":"warn")+'">'+(x[2]?"Active":"Next")+'</span><h3>'+x[0]+'</h3><p class="subtitle">'+x[1]+'</p><div class="barbg"><div class="bar" style="width:'+(x[2]?100:18)+'%"></div></div></div>'}).join("")+'</div>'}
+function today(){
+var total=state.tasks.filter(function(x){return !x.done}).reduce(function(a,x){return a+x.mins},0);
+return header("Today's plan",(total/60).toFixed(1)+"h remaining · workload is capped by your sustainable capacity.")+
+'<div class="card"><div class="row between"><div><b>'+ (total<=state.profile.hours*60?"This plan fits your capacity.":"The plan is too long — stop after the highest-value tasks.")+'</b><p class="subtitle">A sustainable 4-hour plan is more valuable than an 8-hour plan you cannot maintain.</p></div><span class="pill '+(total<=state.profile.hours*60?"good":"warn")+'">'+total+' min</span></div></div>'+
+'<div class="section">Tasks</div><div class="card">'+state.tasks.map(function(t){return '<div class="task '+(t.done?"done":"")+'"><button class="check" data-task="'+t.id+'">'+(t.done?"✓":"")+'</button><div style="flex:1"><div class="tasktext"><b>'+t.skill+'</b> — '+esc(t.text)+'</div><div class="muted">'+t.mins+' min</div></div></div>'}).join("")+'</div>';
+}
+function practice(skill,types){
+var s=state.skills[skill];
+return header(skill+" practice","Target one question type at a time. Difficulty changes from your recent accuracy.")+
+'<div class="card"><div class="row" style="flex-wrap:wrap">'+types.map(function(t){return '<button class="btn" data-practice="'+skill+'" data-type="'+t+'">'+t+'</button>'}).join("")+'</div><div class="section">Current profile</div><div class="metric">'+s.band.toFixed(1)+'</div><div class="barbg"><div class="bar" style="width:'+s.accuracy+'%"></div></div><p class="subtitle">Recent accuracy '+s.accuracy+'% · Main weakness: <b>'+esc(s.weak)+'</b>.</p><button class="btn primary" data-run="'+skill+'">Run targeted 10-question set</button></div>';
+}
+function writing(){
+return header("Writing Lab","Teach yourself to improve — the coach does not replace your essay with a Band 8 essay.")+
+'<div class="grid two"><div class="card"><span class="pill">Task 2</span><h3>Prompt</h3><p>Some people believe universities should focus mainly on preparing students for employment. Others think universities should provide a broader education. Discuss both views and give your own opinion.</p><p class="subtitle">Recommended paragraph pattern: Claim → Explanation → Reason/Evidence → Example → Link.</p></div><div class="card"><textarea id="essay" class="textarea" placeholder="Write your essay or one body paragraph here..."></textarea><div class="row between" style="margin-top:10px"><span class="muted">Focus on clarity, development and natural collocations.</span><button class="btn primary" id="grade">Get coaching feedback</button></div></div></div><div id="feedback"></div>';
+}
+function speaking(){
+return header("Speaking simulator","Natural fluency and precise vocabulary matter more than forced idioms.")+
+'<div class="card"><span class="pill">Part 2</span><h2>Describe a skill you would like to learn.</h2><p class="subtitle">1 minute preparation + 2 minutes speaking.</p><div class="metric" id="clock">02:00</div><button class="btn primary" id="startTimer">Start 2-minute timer</button></div>';
+}
+function vocabulary(){
+return header("Vocabulary","Prioritize collocations and chunks; hide words that you consistently know.")+
+'<div class="row"><input class="input" id="newword" placeholder="Add a word"><button class="btn primary" id="addword">Add</button></div><div class="section">My vocabulary</div><div class="card"><table class="table"><tr><th>Word</th><th>IPA</th><th>POS</th><th>CEFR</th><th>IELTS</th><th>Vietnamese</th><th>Status</th></tr>'+state.vocab.map(function(x,i){return '<tr><td><b>'+esc(x[0])+'</b><br><span class="muted">⭐ IELTS collocations</span></td><td>'+x[1]+'</td><td>'+x[2]+'</td><td>'+x[3]+'</td><td>'+x[4]+'</td><td>'+esc(x[5])+'</td><td><button class="pill" data-vocab="'+i+'">'+x[6]+'</button></td></tr>'}).join("")+'</table></div>';
+}
+function errors(){return header("My Errors","Every repeated mistake should become a targeted learning action.")+'<div class="grid three"><div class="card"><div class="muted">Logged errors</div><div class="metric">'+state.errors.length+'</div></div><div class="card"><div class="muted">Repeated</div><div class="metric">'+state.errors.filter(function(x){return x[5]>1}).length+'</div></div><div class="card"><div class="muted">Top recurring</div><div class="metric">Matching Info</div></div></div><div class="section">Error log</div><div class="card"><table class="table"><tr><th>Date</th><th>Skill</th><th>Error</th><th>My answer</th><th>Correct</th><th>Times</th></tr>'+state.errors.map(function(x){return '<tr><td>'+x[0]+'</td><td>'+x[1]+'</td><td><b>'+x[2]+'</b></td><td>'+esc(x[3])+'</td><td>'+esc(x[4])+'</td><td>'+x[5]+'</td></tr>'}).join("")+'</table></div>'}
+function analytics(){return header("Analytics","Trends are more useful than isolated scores.")+'<div class="grid four">'+Object.keys(state.skills).map(function(k){return '<div class="card"><div class="muted">'+k+'</div><div class="metric">'+state.skills[k].band.toFixed(1)+'</div><span class="pill">Target '+state.skills[k].target+'</span></div>'}).join("")+'</div><div class="section">Overall trend</div><div class="card"><div class="chart">'+state.history.map(function(x){return '<div class="chartcol"><span class="muted">'+x.toFixed(1)+'</span><div class="chartbar" style="height:'+Math.max(25,(x-5)*55)+'px"></div></div>'}).join("")+'</div></div>'}
+function mocks(){return header("Mock Tests","Use repeated timed evidence to estimate readiness.")+'<div class="card"><h3>Full IELTS simulation</h3><p class="subtitle">Listening → Reading → Writing → Speaking.</p><button class="btn primary" id="mock">Record a mock result</button></div>'}
+function coach(){return header("AI Coach","The production version should connect this interface to a secure AI backend.")+'<div class="card"><div id="messages"><div class="message ai">Your current estimate is '+overall().toFixed(1)+'. Your largest gap is '+priority().name+' — '+esc(priority().data.weak)+'. Ask me why you are stuck, what to study today, or how to improve a specific mistake.</div></div><div class="row"><input class="input" id="question" placeholder="Ask your coach..."><button class="btn primary" id="ask">Ask</button></div></div>'}
+function settings(){
+var p=state.profile;
+return header("Settings","These values control the personalized planning engine.")+'<div class="card"><div class="grid two"><label class="muted">Current estimate<input class="input" id="cur" type="number" step=".1" value="'+p.current+'"></label><label class="muted">Target<input class="input" id="tar" type="number" step=".1" value="'+p.target+'"></label><label class="muted">Stretch target<input class="input" id="str" type="number" step=".1" value="'+p.stretch+'"></label><label class="muted">Exam date<input class="input" id="exam" type="date" value="'+p.exam+'"></label><label class="muted">Daily sustainable hours<input class="input" id="hrs" type="number" step=".5" value="'+p.hours+'"></label><label class="muted">Study days/week<input class="input" id="days" type="number" min="1" max="7" value="'+p.days+'"></label></div><button class="btn primary" id="saveSettings" style="margin-top:16px">Save profile</button><button class="btn" id="reset" style="margin-left:8px">Reset demo data</button></div>'}
+function render(){
+var el=document.getElementById("app"),out="";
+if(page==="Dashboard")out=dashboard();
+else if(page==="Roadmap")out=roadmap();
+else if(page==="Today")out=today();
+else if(page==="Listening")out=practice("Listening",["Spelling","Numbers","Multiple Choice","Form Completion","Distractors"]);
+else if(page==="Reading")out=practice("Reading",["Matching Headings","T/F/NG","Matching Information","Multiple Choice","Sentence Completion"]);
+else if(page==="Writing")out=writing();
+else if(page==="Speaking")out=speaking();
+else if(page==="Vocabulary")out=vocabulary();
+else if(page==="Error Log")out=errors();
+else if(page==="Mock Tests")out=mocks();
+else if(page==="Analytics")out=analytics();
+else if(page==="AI Coach")out=coach();
+else if(page==="Settings")out=settings();
+el.innerHTML=out;
+bind();
+}
+function bind(){
+document.querySelectorAll("[data-page]").forEach(function(b){b.onclick=function(){page=b.getAttribute("data-page");renderNav();render()}})
+document.querySelectorAll("[data-task]").forEach(function(b){b.onclick=function(){var id=+b.getAttribute("data-task");state.tasks.forEach(function(t){if(t.id===id)t.done=!t.done});save();render()}})
+var x=document.getElementById("todayBtn");if(x)x.onclick=function(){page="Today";renderNav();render()};
+document.querySelectorAll("[data-run]").forEach(function(b){b.onclick=function(){var k=b.getAttribute("data-run"),s=state.skills[k],score=Math.floor(55+Math.random()*40);s.accuracy=Math.round(s.accuracy*.7+score*.3);s.sessions++;if(score>=85)s.band=Math.min(8,s.band+.05);if(score<55)s.band=Math.max(4,s.band-.03);state.history.push(+overall().toFixed(2));state.history=state.history.slice(-12);save();alert(k+" targeted set: "+score+"%. Result saved and difficulty will adapt.");render()}})
+var g=document.getElementById("grade");if(g)g.onclick=function(){var text=document.getElementById("essay").value.trim(),n=text?text.split(/\s+/).length:0;document.getElementById("feedback").innerHTML='<div class="section">Coach feedback</div><div class="card"><h3>'+n+' words</h3><p>'+(n<80?"Your response is too short to show sustained development.":"Good starting point. Strengthen each major claim by explaining the mechanism before giving the example.")+'</p><table class="table"><tr><th>Criterion</th><th>Next action</th></tr><tr><td>Task Response</td><td>Answer every part and develop each main idea.</td></tr><tr><td>Coherence</td><td>Give each paragraph a clear role.</td></tr><tr><td>Lexical Resource</td><td>Use precise collocations rather than forced advanced vocabulary.</td></tr><tr><td>Grammar</td><td>Combine accurate simple structures with controlled complex ones.</td></tr></table><p class="muted">Reusable pattern: Claim → Why/how → Example → Result/link.</p></div>'};
+var aw=document.getElementById("addword");if(aw)aw.onclick=function(){var q=document.getElementById("newword").value.trim();if(q){state.vocab.unshift([q,"—","—","To assess","To assess","Add meaning","New"]);save();render()}};
+document.querySelectorAll("[data-vocab]").forEach(function(b){b.onclick=function(){var i=+b.getAttribute("data-vocab"),a=["New","Learning","Reviewing","Mastered"],v=state.vocab[i],n=a.indexOf(v[6]);v[6]=a[(n+1)%a.length];save();render()}});
+var sm=document.getElementById("saveSettings");if(sm)sm.onclick=function(){state.profile.current=+document.getElementById("cur").value;state.profile.target=+document.getElementById("tar").value;state.profile.stretch=+document.getElementById("str").value;state.profile.exam=document.getElementById("exam").value;state.profile.hours=+document.getElementById("hrs").value;state.profile.days=+document.getElementById("days").value;save();alert("Profile saved.");render()};
+var rs=document.getElementById("reset");if(rs)rs.onclick=function(){if(confirm("Reset demo data?")){state=JSON.parse(JSON.stringify(initial));save();render()}};
+var mock=document.getElementById("mock");if(mock)mock.onclick=function(){Object.keys(state.skills).forEach(function(k){state.skills[k].sessions++;state.skills[k].accuracy=Math.min(95,state.skills[k].accuracy+3)});state.history.push(+overall().toFixed(2));save();alert("Mock result recorded.");render()};
+var ask=document.getElementById("ask");if(ask)ask.onclick=function(){var q=document.getElementById("question").value.trim();if(!q)return;var p=priority();document.getElementById("messages").innerHTML+='<div class="message me">'+esc(q)+'</div><div class="message ai">Based on your data, I would prioritize '+p.name+' next, especially '+esc(p.data.weak)+'. Keep the session focused and sustainable instead of adding more hours.</div>';document.getElementById("question").value=""};
+}
+renderNav();render();
+})();
+</script>
+</body>
+</html>
