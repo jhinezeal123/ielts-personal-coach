@@ -7,6 +7,8 @@ in Chrome/Edge (file://). Therefore:
 - Every JS file is wrapped in an IIFE `(function(){ "use strict"; ... })();` and attaches to the global `window.IELTS`.
 - Only external resource allowed: Google Fonts `<link>` (app must still work offline with fallbacks).
   Exception: `js/update.js` may call the GitHub releases API (`api.github.com`, CORS-enabled); failures must be silent (see §9).
+  Exception: `js/feedback.js` may POST to the Telegram Bot API (`api.telegram.org`) when the user sends feedback; failures
+  must show a visible but friendly Vietnamese error on the page — never a thrown/uncaught error or our own console output (see §12).
 - UI language: **Vietnamese with full diacritics**; IELTS terms stay English (Listening, Task 1, Matching Headings…).
 - Always escape user-entered text with `IELTS.esc()`. Content data files are trusted (may contain HTML).
 - No console errors. Target modern Chrome/Edge. Must be responsive down to 380px wide.
@@ -31,6 +33,7 @@ css/vocab.css       (V)
 css/schedule.css    (SC)   Lịch học (weekly timetable) — see §10
 
 version.js                 window.IELTS_VERSION (single source of truth) + defensive loader for optional update-status.js
+feedback-config.js         window.IELTS_FEEDBACK = { telegramBotToken, telegramChatId } — committed, empty = not configured (§12)
 js/core.js          (A1)   namespace, store, StudyClock, router, helpers, stats, plan, SRS, errors, TTS, audio DB
 data/vocab-bank.js  (V)
 data/listening-1.js (LD1)
@@ -50,6 +53,7 @@ data/writing-extra.js (14 Task 1 + 25 Task 2; nạp sau bank gốc)
 data/speaking-bank.js(S)
 data/speaking-extra.js (10 topic; nạp sau bank gốc)
 js/packs.js                content channel: IELTS.registerPack / resolveAudio + loader for optional content-packs/index.js (§11)
+js/feedback.js             IELTS.feedback: Telegram feedback sender, draft + rate limit (§12)
 js/exam.js          (B)    shared exam engine
 js/pages/dashboard.js (A2)
 js/pages/roadmap.js   (A2)
@@ -62,6 +66,7 @@ js/pages/vocab.js     (V)
 js/pages/errors.js    (A2)
 js/pages/settings.js  (A2)
 js/pages/schedule.js  (SC)   Lịch học — see §10
+js/pages/feedback.js         Góp ý cho nhà phát triển (#/feedback) — see §12
 js/update.js               IELTS.update: GitHub release check (Settings → Cập nhật + one silent check per day on boot)
 js/app.js           (A1)   boot: onboarding, router start, topbar, global timer widget
 ```
@@ -137,7 +142,7 @@ Body background: `var(--paper)` with dotted grid `radial-gradient(var(--line-2) 
 
 App shell (A1): left sidebar (248px) with logo "IELTS Coach" + small sparkle doodle, learner name, nav grouped:
 "Học tập": Tổng quan, Lộ trình, Hôm nay · "Luyện tập": Listening, Reading, Writing, Speaking, Từ vựng ·
-"Theo dõi": Sổ lỗi, Cài đặt. Each nav item has an icon and a skill-colour dot for skill pages.
+"Theo dõi": Sổ lỗi, Cài đặt, Góp ý. Each nav item has an icon and a skill-colour dot for skill pages.
 Topbar inside main: today's study-day date (VN), streak flame + number, "Điểm danh" button (disabled + ✓ when done),
 and the **global study timer widget** (see §5). <900px: sidebar collapses to icons; <640px: sidebar becomes a bottom tab bar
 (icons only, scrollable).
@@ -638,3 +643,34 @@ Binding detail: `content/CONTRACT.md`. App releases (§9) are for features only;
 - **Ownership:** content packs and `content/manifest.json` — content authors (never hand-edit the manifest);
   `js/packs.js`, `scripts/sync-content.ps1`, `scripts/build-content-manifest.mjs`, `scripts/content-pack-lib.mjs` —
   content-channel infrastructure. IDs are progress keys: never rename a published ID.
+
+---
+
+## 12. Feedback channel (Góp ý cho nhà phát triển) — `#/feedback`
+
+- **Files:** `feedback-config.js` (config, loaded right after `version.js`), `js/feedback.js` (`IELTS.feedback`, after
+  `js/packs.js`), `js/pages/feedback.js` (page, `group:"track"`, `order:31`, icon `message-square`, so it appears in the
+  sidebar right after Cài đặt) and a "Góp ý cho nhà phát triển" card in Settings (next to Cập nhật) linking to `#/feedback`.
+  `js/feedback.js` adds the `message-square` / `send` icons to `IELTS.ICONS` if missing. CSS: `fb-` prefix in `pages.css`.
+- **Config:** `window.IELTS_FEEDBACK = { telegramBotToken: "", telegramChatId: "" }`. A missing file, missing object or empty
+  string = not configured: the page shows an info box and the send button is disabled (the draft can still be written).
+  The maintainer fills the values, **commits and pushes** them (a local uncommitted edit makes the auto-updater skip as
+  "skipped-dirty", §9). The repo is public, so the token is public: use a bot dedicated to feedback; revoke with
+  `/revoke` in @BotFather if abused.
+- **API:** `IELTS.feedback.configured()`, `send({type, message, contact, includeInfo}) → Promise<{ok, messageId}>`,
+  `buildText(f)`, `cooldownLeft()`, `loadDraft() / saveDraft(d) / clearDraft()`, `TYPES` (`bug` Lỗi · `feature` Góp ý tính năng ·
+  `content` Nội dung sai · `other` Khác).
+- **Request:** `POST https://api.telegram.org/bot<token>/sendMessage` with a `URLSearchParams` body (`chat_id`, `text`,
+  `disable_web_page_preview=true`) and no custom headers → CORS simple request, no preflight from `file://`. No
+  `parse_mode` (plain text). 15 s timeout via `AbortController`. Resolves only when the JSON response has `ok: true`;
+  otherwise rejects with `Error` whose `.message` is Vietnamese and `.code` ∈ `not-configured|too-short|rate-limit|no-fetch|
+  offline|network|timeout|bad-response|telegram` (Telegram's `description` is included; the page escapes it).
+- **Text:** `📝 IELTS Coach — Góp ý`, `Loại: …`, the message (min 10 chars; cut with "… (đã cắt bớt)" so the whole text is
+  ≤ 4096), optional `Liên hệ: …`, and when `includeInfo` (default on): app version, current hash + last non-feedback route,
+  time in Asia/Ho_Chi_Minh, `navigator.userAgent`, screen/window size. Never the learner's name or study data.
+- **Rate limit:** at most one *successful* send per 30 s (`localStorage["ielts-coach-feedback-last"]`); failed sends do not
+  start the cooldown. Draft: `localStorage["ielts-coach-feedback-draft"]` (saved on input, cleared on success). Both keys are
+  outside the main state, so they are not in backups. All storage access is wrapped in try/catch (in-memory fallback).
+- **States:** sending (button disabled, "Đang gửi…"), success (form cleared, thank-you box + toast), error (text kept,
+  `.st-warn` box with the reason; the user can retry). Tradeoff: on a network failure or HTTP 4xx Chrome/Edge itself still
+  logs one "Failed to load resource" line; the app never logs or throws.

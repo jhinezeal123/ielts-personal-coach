@@ -97,6 +97,17 @@
     "</section>";
   }
 
+  /* Feedback channel (SPEC §12): the form itself lives on #/feedback (js/pages/feedback.js). */
+  function feedbackHTML() {
+    var ok = safe(function () { return I.feedback.configured(); }, false);
+    return '<section class="card st-card st-feedback">' +
+      '<div class="card-title">' + ic("message-square", 18) + " Góp ý cho nhà phát triển</div>" +
+      '<p class="small muted">Gặp lỗi, thấy nội dung sai hay muốn có tính năng mới? Gửi vài dòng thẳng tới người làm app qua Telegram — không cần tài khoản.</p>' +
+      (ok ? "" : '<div class="st-info small">' + ic("info", 15) + " Kênh góp ý chưa được cấu hình trên bản app này.</div>") +
+      '<div class="row wrap"><a class="btn sm primary" href="#/feedback">' + ic("send", 14) + " Viết góp ý</a></div>" +
+    "</section>";
+  }
+
   function render() {
     var p = I.state.profile, aims = p.aims || {}, base = p.baseline || {}, mw = p.manualWeak || {};
     var st = I.state;
@@ -182,7 +193,7 @@
         "</section>" +
       "</div>" +
 
-      '<div class="grid g-2 st-grid">' + updateHTML() + "</div>" +
+      '<div class="grid g-2 st-grid">' + updateHTML() + feedbackHTML() + "</div>" +
 
       '<section class="card st-card st-danger">' +
         '<div class="card-title">' + ic("alert-triangle", 18) + " Vùng cần cẩn thận</div>" +

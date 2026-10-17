@@ -422,6 +422,18 @@
 .st-danger-row > div { flex: 1; min-width: 220px; line-height: 1.5; }
 
 /* ==========================================================================
+   FEEDBACK (Góp ý — §12; reuses .st-card / .st-info / .st-warn)
+   ========================================================================== */
+.fb-card { max-width: 720px; }
+.fb-req { color: var(--bad); }
+.fb-check { gap: 10px; align-items: flex-start; cursor: pointer; line-height: 1.45; }
+.fb-check .checkbox { flex: none; margin-top: 1px; }
+.fb-note { margin: -6px 0 0 34px; }
+.fb-result:empty { display: none; }
+.fb-ok { background: var(--good-50); color: var(--ink); }
+.fb-ok svg { color: var(--good); }
+
+/* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 1180px) {

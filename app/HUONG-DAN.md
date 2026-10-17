@@ -1,6 +1,6 @@
 # IELTS Coach — Hướng dẫn sử dụng
 
-Sổ tay luyện thi IELTS Academic cho một người học. Không cần cài đặt, không cần mạng (trừ phông chữ).
+Sổ tay luyện thi IELTS Academic cho một người học. Không cần cài đặt, không cần mạng (trừ phông chữ, kiểm tra cập nhật và gửi góp ý).
 
 Ngân hàng hiện có **12 đề Reading (36 passage)** và **12 đề Listening (48 section)**, mỗi đề đủ 40 câu. Đợt mở rộng mới thêm Practice Test 5–12 cho cả hai kỹ năng, tổng cộng 640 câu mới. Các gói Writing, Speaking và Dictation cũng đã được bổ sung. Xem [nội dung, xuất xứ và cách mở](NOI-DUNG.md).
 
@@ -41,6 +41,7 @@ Ngân hàng hiện có **12 đề Reading (36 passage)** và **12 đề Listenin
 - **Từ vựng**: mỗi ngày 8 từ mới (lấy từ bài đọc hôm nay trước), ôn theo lịch 1-2-5-7-14-30 ngày. Nhớ → sang mốc tiếp theo; Quên → quay lại sau 1 ngày. Ôn sớm không được tính.
 - **Sổ lỗi**: 5 cột Lỗi lặp lại | Ví dụ của mình | Vì sao sai | Cách sửa | Tuần kiểm tra lại. Mỗi lỗi được hẹn kiểm tra lại sau 7 ngày; khi đến hạn, bấm Đạt / Chưa đạt.
 - **Lịch học**: bảng tuần Thứ 2 → Chủ nhật, mỗi hàng là 1 giờ (00:00 → 24:00). Ghi lại giờ học trên trường, giờ về đến nhà, giờ tự học ở nhà hoặc bận việc khác — ô nào không cần thì để trống. Bấm một ô để chọn loại và gõ ghi chú (ví dụ tên môn học). Muốn điền nhanh: chọn một loại ở thanh công cụ rồi bấm (hoặc kéo chuột) qua nhiều ô. Có nút **Sao chép ngày** (ví dụ chép lịch Thứ 2 sang Thứ 3) và **Xoá tất cả**. Bên cạnh bảng là tổng kết mỗi ngày: số giờ ở trường, giờ tự học và giờ có thể dành cho IELTS. Lịch học được lưu cùng dữ liệu app và có trong bản sao lưu.
+- **Góp ý**: gửi lỗi, nội dung sai hoặc ý tưởng tính năng cho người làm app (xem mục 9).
 - **Cài đặt**: hồ sơ, ngày thi, aim, band hiện tại, ghi chú điểm yếu, số phút mỗi ngày, số từ mới mỗi ngày, giọng đọc Listening, sao lưu / khôi phục, xoá dữ liệu.
 
 ## 5a. Audio thật và gói bài mới
@@ -76,3 +77,11 @@ Ngân hàng hiện có **12 đề Reading (36 passage)** và **12 đề Listenin
 - Cập nhật ngay: bấm đúp `scripts/cap-nhat-ngay.cmd`. Tắt tự động cập nhật: bấm đúp `scripts/go-tu-dong-cap-nhat.cmd`.
 - **Phát hành bản mới (người phát triển):** sửa số phiên bản trong `app/version.js`, commit, push, rồi chạy `gh release create vX.Y.Z`. Tag phải trùng với số trong `version.js` (ví dụ `1.1.0` → `v1.1.0`).
 - **Đăng bài học mới (người phát triển):** thêm gói vào `content/packs/`, chạy `node scripts/build-content-manifest.mjs` và `node scripts/check-content.mjs`, rồi push lên `main`. Không cần tag hay release (xem `content/CONTRACT.md`).
+
+## 9. Góp ý cho nhà phát triển
+
+- Mở **Góp ý** ở thanh bên (hoặc **Cài đặt → Góp ý cho nhà phát triển → Viết góp ý**).
+- Chọn loại (Lỗi / Góp ý tính năng / Nội dung sai / Khác), viết nội dung (ít nhất 10 ký tự), có thể để lại email, Zalo hoặc Telegram nếu muốn được trả lời, rồi bấm **Gửi góp ý** (hoặc Ctrl + Enter).
+- Ô **Đính kèm thông tin kỹ thuật** (bật sẵn) gửi kèm phiên bản app, trang đang mở, thời gian, trình duyệt và kích thước màn hình để dễ tìm lỗi. Tên, bài làm và dữ liệu học của bạn **không** được gửi.
+- Cần có mạng. Nếu gửi lỗi, nội dung vẫn được giữ nguyên để bạn bấm gửi lại; bản nháp cũng được giữ khi tải lại trang. Mỗi lần gửi thành công cách nhau ít nhất 30 giây.
+- Nếu trang báo **chưa được cấu hình**, bản app này chưa có kênh nhận góp ý — hãy báo trực tiếp cho người cài app cho bạn.
