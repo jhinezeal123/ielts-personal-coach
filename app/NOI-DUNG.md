@@ -76,3 +76,13 @@ Kiểm tra này nạp đúng thứ tự script của app; kiểm tra số câu, 
 Nội dung nguồn để bảo trì nằm trong `scripts/content/` và `research/reading-expansion-texts.json`. Hai file app được tạo sẵn; chỉ khi sửa nội dung mới cần chạy `node scripts/build-reading-expansion.mjs` và `node scripts/build-listening-expansion.mjs`. App không chạy các script biên tập, không gọi mạng để tạo đề và không cần cài thư viện.
 
 Đã kiểm tra qua giao diện: danh sách hiển thị Reading 12 đề / 36 passage và Listening 12 đề / 48 section; Reading R5-P2 nộp được 13/13 với headings, information, sentence completion và MCQ; Listening L5-S2 phát được TTS, sơ đồ hiển thị rõ, nộp được 10/10 và mở transcript. Gói trước đã kiểm tra R3-P1, L3-S1, biểu đồ Writing, Speaking và Dictation. Những kiểm tra này xác nhận tính tương thích của dữ liệu và luồng sử dụng, không thay thế việc giáo viên thẩm định độ khó hoặc chuẩn hóa band.
+
+## Nguồn bài từ gói nội dung
+
+Ngoài ngân hàng có sẵn ở trên, app nhận thêm bài qua **gói nội dung** (tab Listening → **Audio thật**, và đề/bài bổ sung ở các trang khác). Gói được tải về máy mỗi ngày cùng lúc với kiểm tra cập nhật; mỗi gói ghi rõ nguồn trong trường `source`, và mỗi đoạn nghe có liên kết về trang gốc. Nguồn dùng cho các gói:
+
+- [BBC Learning English — 6 Minute English](https://www.bbc.co.uk/learningenglish/english/features/6-minute-english) — chỉ dùng cho mục đích **học cá nhân, phi thương mại**, theo điều khoản sử dụng của BBC. Câu hỏi và lời giải do app biên soạn.
+- [British Council](https://takeielts.britishcouncil.org/take-ielts/prepare/free-ielts-practice-tests) / [ielts.org](https://ielts.org/take-a-test/preparation-resources) — bài mẫu luyện tập chính thức được công bố miễn phí; dùng theo điều khoản của từng trang.
+- [VOA Learning English](https://learningenglish.voanews.com/) — nội dung của chính phủ Hoa Kỳ thuộc **phạm vi công cộng** (trừ các phần ghi rõ của bên thứ ba).
+
+**File audio không được lưu trong kho mã nguồn.** Gói bài chỉ chứa đường dẫn tới file gốc; script cập nhật tải audio thẳng từ nguồn về máy của bạn (`app/content-packs/audio/`, không đưa lên git). Nếu file chưa có trên máy, app phát trực tiếp từ nguồn. Bản quyền audio và văn bản gốc thuộc về các đơn vị nêu trên; app không thể hiện sự bảo trợ của họ.
