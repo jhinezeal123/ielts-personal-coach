@@ -1,0 +1,805 @@
+{
+  "checkedAt": "2026-10-16T07:22:57.150Z",
+  "catalogueDate": "2026-10-16",
+  "meaning": "An HTTP availability check only. A failed automated request does not prove a site is down; HTTP 200 does not validate question quality or permissions.",
+  "summary": {
+    "http-ok": 101,
+    "request-failed": 5,
+    "access-restricted": 8
+  },
+  "results": [
+    {
+      "url": "https://api.macmillanenglish.com/fileadmin/user_upload/Catalogue/Samples/Ready_for_series/Ready_for_IELTS_Student_Book_Unit_2.pdf",
+      "status": 200,
+      "finalUrl": "https://api.macmillanenglish.com/fileadmin/user_upload/Catalogue/Samples/Ready_for_series/Ready_for_IELTS_Student_Book_Unit_2.pdf",
+      "contentType": "application/pdf",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://breakingnewsenglish.com/",
+      "status": 200,
+      "finalUrl": "https://breakingnewsenglish.com/",
+      "contentType": "text/html",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://cbt.ieltsfever.org/",
+      "status": 200,
+      "finalUrl": "https://cbt.ieltsfever.org/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://collins.co.uk/pages/elt-elt-audio-resources",
+      "status": 200,
+      "finalUrl": "https://collins.co.uk/pages/elt-elt-audio-resources",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://collins.co.uk/products/9780007499694",
+      "status": 200,
+      "finalUrl": "https://collins.co.uk/products/9780007499694",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://dailydictation.com/",
+      "status": 200,
+      "finalUrl": "https://dailydictation.com/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://downloads.bbc.co.uk/learningenglish/features/6min/141016_6mineng_learningenglish.pdf",
+      "status": null,
+      "result": "request-failed",
+      "error": "TypeError"
+    },
+    {
+      "url": "https://elllo.org/",
+      "status": 200,
+      "finalUrl": "https://elllo.org/",
+      "contentType": "text/html",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://engexam.info/ielts-reading-practice-tests/",
+      "status": 200,
+      "finalUrl": "https://engexam.info/ielts-reading-practice-tests/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts-fighter.com/ielts-online-test.html",
+      "status": 200,
+      "finalUrl": "https://ielts-fighter.com/ielts-online-test.html",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts-nguyenhuyen.com/pdf-tong-hop-tai-lieu-luyen-thi-ielts-speaking-mien-phi/",
+      "status": 200,
+      "finalUrl": "https://ielts-nguyenhuyen.com/pdf-tong-hop-tai-lieu-luyen-thi-ielts-speaking-mien-phi/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts-nguyenhuyen.com/pdf-tong-hop-tai-lieu-luyen-thi-ielts-writing-mien-phi/",
+      "status": 200,
+      "finalUrl": "https://ielts-nguyenhuyen.com/pdf-tong-hop-tai-lieu-luyen-thi-ielts-writing-mien-phi/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts-testpro.com/full-test/",
+      "status": 200,
+      "finalUrl": "https://ielts-testpro.com/full-test/",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts-testpro.com/practice/",
+      "status": 200,
+      "finalUrl": "https://ielts-testpro.com/practice/",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts-testpro.com/practice/listening/",
+      "status": 200,
+      "finalUrl": "https://ielts-testpro.com/practice/listening/",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts-testpro.com/practice/reading/",
+      "status": 200,
+      "finalUrl": "https://ielts-testpro.com/practice/reading/",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts-testpro.com/practice/speaking/",
+      "status": 200,
+      "finalUrl": "https://ielts-testpro.com/practice/speaking/",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts-thanhloan.com/",
+      "status": 200,
+      "finalUrl": "https://ielts-thanhloan.com/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts-up.com/",
+      "status": 200,
+      "finalUrl": "https://ielts-up.com/",
+      "contentType": "text/html",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts-up.com/listening/ielts-listening-exercises.html",
+      "status": 200,
+      "finalUrl": "https://ielts-up.com/listening/ielts-listening-exercises.html",
+      "contentType": "text/html",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts.idp.com/about/ielts-familiarisation-tests",
+      "status": 200,
+      "finalUrl": "https://ielts.idp.com/about/ielts-familiarisation-tests",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts.idp.com/malaysia/prepare/article-free-practice-tests",
+      "status": 200,
+      "finalUrl": "https://ielts.idp.com/malaysia/prepare/article-free-practice-tests",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts.idp.com/prepare/article-access-official-ielts-mock-test",
+      "status": 200,
+      "finalUrl": "https://ielts.idp.com/prepare/article-access-official-ielts-mock-test",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts.magoosh.com/basic",
+      "status": 200,
+      "finalUrl": "https://ielts.magoosh.com/basic",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts.magoosh.com/practice_tests/free",
+      "status": 200,
+      "finalUrl": "https://ielts.magoosh.com/practice_tests/free",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts.magoosh.com/practice-test-explanations",
+      "status": 200,
+      "finalUrl": "https://ielts.magoosh.com/practice-test-explanations",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts.net/",
+      "status": null,
+      "result": "request-failed",
+      "error": "TimeoutError"
+    },
+    {
+      "url": "https://ielts.org/cdn/computer-delivered-sample-tests-academic-reading/ielts-academic-reading-computer-delivered-multiple-choice-one-answer-answer-key.pdf",
+      "status": 200,
+      "finalUrl": "https://ielts.org/cdn/computer-delivered-sample-tests-academic-reading/ielts-academic-reading-computer-delivered-multiple-choice-one-answer-answer-key.pdf",
+      "contentType": "application/pdf",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts.org/cdn/computer-delivered-sample-tests-academic-writing/ielts-academic-writing-example-responses-to-parts-1-and-2-with-band-scores-and-examiner-comments.pdf",
+      "status": 200,
+      "finalUrl": "https://ielts.org/cdn/computer-delivered-sample-tests-academic-writing/ielts-academic-writing-example-responses-to-parts-1-and-2-with-band-scores-and-examiner-comments.pdf",
+      "contentType": "application/pdf",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts.org/cdn/computer-delivered-sample-tests-listening/ielts-listening-computer-delivered-multiple-choice-one-answer-answer-key.pdf",
+      "status": 200,
+      "finalUrl": "https://ielts.org/cdn/computer-delivered-sample-tests-listening/ielts-listening-computer-delivered-multiple-choice-one-answer-answer-key.pdf",
+      "contentType": "application/pdf",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts.org/cdn/computer-delivered-sample-tests-listening/ielts-listening-computer-delivered-multiple-choice-one-answer-transcript.pdf",
+      "status": 200,
+      "finalUrl": "https://ielts.org/cdn/computer-delivered-sample-tests-listening/ielts-listening-computer-delivered-multiple-choice-one-answer-transcript.pdf",
+      "contentType": "application/pdf",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts.org/cdn/ielts-downloadable-assets/ielts-sample-tests/ielts-speaking-sample-tasks-2023.pdf",
+      "status": 200,
+      "finalUrl": "https://ielts.org/cdn/ielts-downloadable-assets/ielts-sample-tests/ielts-speaking-sample-tasks-2023.pdf",
+      "contentType": "application/pdf",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts.org/take-a-test/preparation-resources/sample-test-questions",
+      "status": 200,
+      "finalUrl": "https://ielts.org/take-a-test/preparation-resources/sample-test-questions",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts.org/take-a-test/preparation-resources/sample-test-questions/academic-test",
+      "status": 200,
+      "finalUrl": "https://ielts.org/take-a-test/preparation-resources/sample-test-questions/academic-test",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ielts.org/take-a-test/preparation-resources/sample-test-questions/general-training-test",
+      "status": 200,
+      "finalUrl": "https://ielts.org/take-a-test/preparation-resources/sample-test-questions/general-training-test",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltscity.vn/tu-hoc-ielts/ielts-speaking/",
+      "status": 200,
+      "finalUrl": "https://ieltscity.vn/tu-hoc-ielts/ielts-speaking/",
+      "contentType": "text/html",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsfever.org/academic-reading/",
+      "status": 200,
+      "finalUrl": "https://ieltsfever.org/academic-reading/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsfever.org/ielts-reading-test-academic-module-samples/",
+      "status": 200,
+      "finalUrl": "https://ieltsfever.org/ielts-reading-test-academic-module-samples/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsflex.com/",
+      "status": 200,
+      "finalUrl": "https://ieltsflex.com/",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsfocus.com/2018/12/09/model-answers-ielts-writing-task-2/",
+      "status": 200,
+      "finalUrl": "https://ieltsfocus.com/2018/12/09/model-answers-ielts-writing-task-2/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsleader.com/free-ielts-general-reading-practice-test",
+      "status": 200,
+      "finalUrl": "https://ieltsleader.com/free-ielts-general-reading-practice-test",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsliz.com/",
+      "status": 200,
+      "finalUrl": "https://ieltsliz.com/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsliz.com/ielts-reading-lessons-information-and-tips/",
+      "status": 200,
+      "finalUrl": "https://ieltsliz.com/ielts-reading-lessons-information-and-tips/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsliz.com/vocabulary/",
+      "status": 200,
+      "finalUrl": "https://ieltsliz.com/vocabulary/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsmaterial.com/ielts-reading-practice-test/",
+      "status": 200,
+      "finalUrl": "https://ieltsmaterial.com/ielts-reading-practice-test/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsonlinetest.ielts-fighter.com/testfree",
+      "status": null,
+      "result": "request-failed",
+      "error": "TimeoutError"
+    },
+    {
+      "url": "https://ieltsonlinetests.com/ielts-exam-library",
+      "status": 200,
+      "finalUrl": "https://ieltsonlinetests.com/ielts-exam-library",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsonlinetests.com/ielts-exam-library?skill=listening",
+      "status": 200,
+      "finalUrl": "https://ieltsonlinetests.com/ielts-exam-library?skill=listening",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsonlinetests.com/ielts-exam-library?skill=reading",
+      "status": 200,
+      "finalUrl": "https://ieltsonlinetests.com/ielts-exam-library?skill=reading",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsonlinetests.com/ielts-exam-library?skill=speaking",
+      "status": 200,
+      "finalUrl": "https://ieltsonlinetests.com/ielts-exam-library?skill=speaking",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsonlinetests.com/ielts-exam-library?skill=writing",
+      "status": 200,
+      "finalUrl": "https://ieltsonlinetests.com/ielts-exam-library?skill=writing",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltspracticeonline.com/",
+      "status": 200,
+      "finalUrl": "https://ieltspracticeonline.com/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsprogress.com/",
+      "status": 200,
+      "finalUrl": "https://ieltsprogress.com/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsweb.com/",
+      "status": 200,
+      "finalUrl": "https://ieltsweb.com/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsweb.com/ielts-academic-reading-practice-tests",
+      "status": 200,
+      "finalUrl": "https://ieltsweb.com/ielts-academic-reading-practice-tests",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsweb.com/ielts-general-reading-practice-tests",
+      "status": 200,
+      "finalUrl": "https://ieltsweb.com/ielts-general-reading-practice-tests",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://ieltsweb.com/listening",
+      "status": 200,
+      "finalUrl": "https://ieltsweb.com/listening",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://keithspeakingacademy.com/ielts-speaking-free-live-lessons/",
+      "status": 200,
+      "finalUrl": "https://keithspeakingacademy.com/ielts-speaking-free-live-lessons/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://learnenglish.britishcouncil.org/free-resources",
+      "status": 200,
+      "finalUrl": "https://learnenglish.britishcouncil.org/free-resources",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://learningenglish.voanews.com/",
+      "status": null,
+      "result": "request-failed",
+      "error": "TypeError"
+    },
+    {
+      "url": "https://mini-ielts.com/",
+      "status": 200,
+      "finalUrl": "https://mini-ielts.com/",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://mini-ielts.com/listening",
+      "status": 200,
+      "finalUrl": "https://mini-ielts.com/listening",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://mini-ielts.com/reading",
+      "status": 200,
+      "finalUrl": "https://mini-ielts.com/reading",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://prepedu.com/vi/news/chinh-thuc-mo-ban-phong-luyen-thi-ielts-ao-4-ky-nang",
+      "status": 200,
+      "finalUrl": "https://prepedu.com/vi/news/chinh-thuc-mo-ban-phong-luyen-thi-ielts-ao-4-ky-nang",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://shop.cambridge.org/english/exam/ielts",
+      "status": 403,
+      "finalUrl": "https://shop.cambridge.org/english/exam/ielts",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "access-restricted"
+    },
+    {
+      "url": "https://shop.cambridge.org/english/family/2100169902",
+      "status": 403,
+      "finalUrl": "https://shop.cambridge.org/english/family/2100169902",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "access-restricted"
+    },
+    {
+      "url": "https://study4.com/tests/ielts/",
+      "status": 200,
+      "finalUrl": "https://study4.com/tests/ielts/",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://takeielts.britishcouncil.org/prepare/ielts-academic/listening",
+      "status": 200,
+      "finalUrl": "https://takeielts.britishcouncil.org/prepare/ielts-academic/listening",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://takeielts.britishcouncil.org/prepare/ielts-free-practice-mock-tests",
+      "status": 200,
+      "finalUrl": "https://takeielts.britishcouncil.org/prepare/ielts-free-practice-mock-tests",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://takeielts.britishcouncil.org/prepare/ielts-ready",
+      "status": 200,
+      "finalUrl": "https://takeielts.britishcouncil.org/prepare/ielts-ready",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://test-english.com/",
+      "status": 403,
+      "finalUrl": "https://test-english.com/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "access-restricted"
+    },
+    {
+      "url": "https://tuhoc.dolenglish.vn/",
+      "status": 200,
+      "finalUrl": "https://tuhoc.dolenglish.vn/",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://tuhoc.dolenglish.vn/luyen-thi-ielts/free-ielts-online-test",
+      "status": 200,
+      "finalUrl": "https://tuhoc.dolenglish.vn/luyen-thi-ielts/free-ielts-online-test",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://tuhoc.dolenglish.vn/luyen-thi-ielts/ielts-listening-practice",
+      "status": 200,
+      "finalUrl": "https://tuhoc.dolenglish.vn/luyen-thi-ielts/ielts-listening-practice",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.bbc.co.uk/learningenglish/",
+      "status": null,
+      "result": "request-failed",
+      "error": "TypeError"
+    },
+    {
+      "url": "https://www.bestmytest.com/ielts/listening",
+      "status": 403,
+      "finalUrl": "https://www.bestmytest.com/ielts/listening",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "access-restricted"
+    },
+    {
+      "url": "https://www.bestmytest.com/ielts/test",
+      "status": 403,
+      "finalUrl": "https://www.bestmytest.com/ielts/test",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "access-restricted"
+    },
+    {
+      "url": "https://www.cambridge.org/elt/insightielts/test.htm",
+      "status": 403,
+      "finalUrl": "https://www.cambridge.org/elt/insightielts/test.htm",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "access-restricted"
+    },
+    {
+      "url": "https://www.cambridgeenglish.org/exams-and-tests/ielts/preparation/",
+      "status": 200,
+      "finalUrl": "https://www.cambridgeenglish.org/exams-and-tests/ielts/preparation/",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.e2language.com/pages/free-download/e2-ielts-full-practice-test-2025",
+      "status": 200,
+      "finalUrl": "https://www.e2language.com/pages/free-download/e2-ielts-full-practice-test-2025",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.e2language.com/pages/promotions/free-full-ielts-mock-test",
+      "status": 200,
+      "finalUrl": "https://www.e2language.com/pages/promotions/free-full-ielts-mock-test",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.esl-lab.com/",
+      "status": 200,
+      "finalUrl": "https://www.esl-lab.com/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.esl-lounge.com/student/ielts.php",
+      "status": 200,
+      "finalUrl": "https://www.esl-lounge.com/student/ielts.php",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.examenglish.com/IELTS/",
+      "status": 200,
+      "finalUrl": "https://www.examenglish.com/IELTS/",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.examenglish.com/IELTS/cbIELTS_reading.htm",
+      "status": 200,
+      "finalUrl": "https://www.examenglish.com/IELTS/cbIELTS_reading.htm",
+      "contentType": "text/html",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.expresspublishing.co.uk/en/ielts-practice-tests-1",
+      "status": 403,
+      "finalUrl": "https://www.expresspublishing.co.uk/en/ielts-practice-tests-1",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "access-restricted"
+    },
+    {
+      "url": "https://www.ielts-bank.com/ielts-question-bank",
+      "status": 200,
+      "finalUrl": "https://www.ielts-bank.com/ielts-question-bank",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ielts-blog.com/",
+      "status": 200,
+      "finalUrl": "https://www.ielts-blog.com/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ielts-blog.com/resources/academic%20reading%20sample.pdf",
+      "status": 200,
+      "finalUrl": "https://www.ielts-blog.com/resources/academic%20reading%20sample.pdf",
+      "contentType": "application/pdf",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ielts-mentor.com/cue-card-sample",
+      "status": 200,
+      "finalUrl": "https://www.ielts-mentor.com/cue-card-sample",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ielts-mentor.com/tag/academic-reading",
+      "status": 200,
+      "finalUrl": "https://www.ielts-mentor.com/tag/academic-reading",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ielts-mentor.com/tag/academic-writing-task-1",
+      "status": 200,
+      "finalUrl": "https://www.ielts-mentor.com/tag/academic-writing-task-1",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ielts-mentor.com/tag/writing-task-2",
+      "status": 200,
+      "finalUrl": "https://www.ielts-mentor.com/tag/writing-task-2",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ielts-up.com/listening/ielts-listening-practice.html",
+      "status": 200,
+      "finalUrl": "https://www.ielts-up.com/listening/ielts-listening-practice.html",
+      "contentType": "text/html",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ielts-writing.info/EXAM/",
+      "status": 200,
+      "finalUrl": "https://www.ielts-writing.info/EXAM/",
+      "contentType": "text/html",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ieltsadvantage.com/2015/07/15/100-ielts-writing-sample-questions/",
+      "status": 200,
+      "finalUrl": "https://www.ieltsadvantage.com/2015/07/15/100-ielts-writing-sample-questions/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ieltsadvantage.com/2015/09/18/ielts-writing-task-2-sample/",
+      "status": 200,
+      "finalUrl": "https://www.ieltsadvantage.com/2015/09/18/ielts-writing-task-2-sample/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ieltsbuddy.com/free-ielts-download.html",
+      "status": 200,
+      "finalUrl": "https://www.ieltsbuddy.com/free-ielts-download.html",
+      "contentType": "text/html",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ieltsbuddy.com/ielts-practice-tests.html",
+      "status": 200,
+      "finalUrl": "https://www.ieltsbuddy.com/ielts-practice-tests.html",
+      "contentType": "text/html",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ieltsforfree.com/ielts-academic-practice-tests/",
+      "status": 200,
+      "finalUrl": "https://www.ieltsforfree.com/ielts-academic-practice-tests/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ieltsjacky.com/ielts-reading-practice-sample-1.html",
+      "status": 200,
+      "finalUrl": "https://www.ieltsjacky.com/ielts-reading-practice-sample-1.html",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ieltsjacky.com/ielts-speaking-questions.html",
+      "status": 200,
+      "finalUrl": "https://www.ieltsjacky.com/ielts-speaking-questions.html",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ieltspodcast.com/",
+      "status": 200,
+      "finalUrl": "https://www.ieltspodcast.com/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ieltspodcast.com/listening/computerbased-listening/",
+      "status": 200,
+      "finalUrl": "https://www.ieltspodcast.com/listening/computerbased-listening/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ieltspodcast.com/sample-ielts-task-2-questions/",
+      "status": 200,
+      "finalUrl": "https://www.ieltspodcast.com/sample-ielts-task-2-questions/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ieltsstudio.com/ielts-mock-test",
+      "status": 200,
+      "finalUrl": "https://www.ieltsstudio.com/ielts-mock-test",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.ieltstestonline.com/free-ielts-practice-tests/",
+      "status": 200,
+      "finalUrl": "https://www.ieltstestonline.com/free-ielts-practice-tests/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.macmillanenglish.com/us/catalogue/courses/exam-preparation/ready-for-ielts-2nd-edition/levels-samples",
+      "status": 200,
+      "finalUrl": "https://www.macmillanenglish.com/us/catalogue/courses/exam-preparation/ready-for-ielts-2nd-edition/levels-samples",
+      "contentType": "text/html;charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.newsinlevels.com/",
+      "status": 200,
+      "finalUrl": "https://www.newsinlevels.com/",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.oxfordonlineenglish.com/free-ielts-preparation-lessons",
+      "status": 200,
+      "finalUrl": "https://www.oxfordonlineenglish.com/free-ielts-preparation-lessons",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.pearson.com/languages/pl-pl/educators/pearson-english-journey-for-pls/adults/practice-tests-plus.html",
+      "status": 200,
+      "finalUrl": "https://www.pearson.com/languages/pl-pl/educators/pearson-english-journey-for-pls/adults/practice-tests-plus.html",
+      "contentType": "text/html",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://www.tcyonline.com/tests/ielts",
+      "status": 403,
+      "finalUrl": "https://www.tcyonline.com/tests/ielts",
+      "contentType": "text/html; charset=UTF-8",
+      "result": "access-restricted"
+    },
+    {
+      "url": "https://www.testglider.com/ielts/en",
+      "status": 200,
+      "finalUrl": "https://www.testglider.com/ielts/en",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    },
+    {
+      "url": "https://zim.vn/practice-test",
+      "status": 200,
+      "finalUrl": "https://zim.vn/practice-test",
+      "contentType": "text/html; charset=utf-8",
+      "result": "http-ok"
+    }
+  ]
+}

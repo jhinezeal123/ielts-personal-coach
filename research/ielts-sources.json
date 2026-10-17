@@ -1,0 +1,2491 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-10-16",
+  "language": "vi",
+  "purpose": "Danh mục nguồn để lựa chọn tài liệu cho IELTS Coach. Chỉ chứa metadata và liên kết; chưa nhập câu hỏi/nội dung đề vào app.",
+  "verificationLegend": {
+    "page": "Đã đọc trang chính chủ bằng công cụ web; chưa làm thử mọi đề.",
+    "indexed": "Đã đọc kết quả chỉ mục từ trang chính chủ; có thể gặp chặn tự động khi mở trực tiếp."
+  },
+  "materialLegend": "materials mô tả loại tài liệu ở cấp nguồn, không cam kết mọi bài đều có đủ các loại này.",
+  "accessLegend": {
+    "free": "Có bài luyện công khai miễn phí; có thể tồn tại dịch vụ khác có phí.",
+    "mixed": "Có phần miễn phí và phần có tài khoản/giới hạn/trả phí.",
+    "paid": "Nội dung đầy đủ cần mua hoặc tài khoản có quyền truy cập."
+  },
+  "counts": {
+    "sources": 60,
+    "ieltsSources": 51,
+    "supportingSources": 9,
+    "uniqueUrls": 114
+  },
+  "sources": [
+    {
+      "id": "ielts-official",
+      "name": "IELTS.org",
+      "category": "official",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ielts.org/take-a-test/preparation-resources/sample-test-questions",
+      "access": "free",
+      "materials": [
+        "html",
+        "pdf",
+        "interactive",
+        "answer-key",
+        "transcript",
+        "model-answer"
+      ],
+      "notes": "Đề mẫu chính thức cho Academic và General Training; bài mẫu theo dạng câu hỏi. Một số bài chạy trên Inspera.",
+      "priority": 1,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ielts.org/take-a-test/preparation-resources/sample-test-questions"
+      },
+      "resources": [
+        {
+          "label": "Đề mẫu Academic",
+          "url": "https://ielts.org/take-a-test/preparation-resources/sample-test-questions/academic-test",
+          "kind": "hub"
+        },
+        {
+          "label": "Đề mẫu General Training",
+          "url": "https://ielts.org/take-a-test/preparation-resources/sample-test-questions/general-training-test",
+          "kind": "hub"
+        },
+        {
+          "label": "Speaking sample tasks 2023",
+          "url": "https://ielts.org/cdn/ielts-downloadable-assets/ielts-sample-tests/ielts-speaking-sample-tasks-2023.pdf",
+          "kind": "pdf"
+        },
+        {
+          "label": "Writing: bài làm, band và nhận xét giám khảo",
+          "url": "https://ielts.org/cdn/computer-delivered-sample-tests-academic-writing/ielts-academic-writing-example-responses-to-parts-1-and-2-with-band-scores-and-examiner-comments.pdf",
+          "kind": "pdf"
+        },
+        {
+          "label": "Listening MCQ: answer key",
+          "url": "https://ielts.org/cdn/computer-delivered-sample-tests-listening/ielts-listening-computer-delivered-multiple-choice-one-answer-answer-key.pdf",
+          "kind": "pdf"
+        },
+        {
+          "label": "Listening MCQ: transcript",
+          "url": "https://ielts.org/cdn/computer-delivered-sample-tests-listening/ielts-listening-computer-delivered-multiple-choice-one-answer-transcript.pdf",
+          "kind": "pdf"
+        },
+        {
+          "label": "Reading MCQ: answer key",
+          "url": "https://ielts.org/cdn/computer-delivered-sample-tests-academic-reading/ielts-academic-reading-computer-delivered-multiple-choice-one-answer-answer-key.pdf",
+          "kind": "pdf"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic",
+        "general-training"
+      ]
+    },
+    {
+      "id": "british-council",
+      "name": "British Council / IELTS Ready",
+      "category": "official",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://takeielts.britishcouncil.org/prepare/ielts-free-practice-mock-tests",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "pdf",
+        "audio",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Đề mẫu miễn phí; IELTS Ready cần tài khoản. Premium phụ thuộc điều kiện đặt thi; không xem toàn bộ gói là miễn phí công khai.",
+      "priority": 1,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://takeielts.britishcouncil.org/prepare/ielts-free-practice-mock-tests"
+      },
+      "resources": [
+        {
+          "label": "IELTS Ready và điều kiện Premium",
+          "url": "https://takeielts.britishcouncil.org/prepare/ielts-ready",
+          "kind": "hub"
+        },
+        {
+          "label": "Tài liệu Listening Academic",
+          "url": "https://takeielts.britishcouncil.org/prepare/ielts-academic/listening",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic",
+        "general-training"
+      ]
+    },
+    {
+      "id": "idp",
+      "name": "IDP IELTS",
+      "category": "official",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ielts.idp.com/about/ielts-familiarisation-tests",
+      "access": "mixed",
+      "materials": [
+        "interactive",
+        "pdf",
+        "audio",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Đề làm quen thi trên máy và tài liệu luyện chính thức. Một số URL IDP chặn trình đọc tự động.",
+      "priority": 1,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ielts.idp.com/about/ielts-familiarisation-tests"
+      },
+      "resources": [
+        {
+          "label": "Tổng hợp official mock tests",
+          "url": "https://ielts.idp.com/prepare/article-access-official-ielts-mock-test",
+          "kind": "hub"
+        },
+        {
+          "label": "Practice tests tại IDP Malaysia",
+          "url": "https://ielts.idp.com/malaysia/prepare/article-free-practice-tests",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic",
+        "general-training"
+      ]
+    },
+    {
+      "id": "cambridge",
+      "name": "Cambridge English / Cambridge University Press & Assessment",
+      "category": "official",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.cambridgeenglish.org/exams-and-tests/ielts/preparation/",
+      "access": "mixed",
+      "materials": [
+        "pdf",
+        "audio",
+        "answer-key",
+        "transcript",
+        "model-answer"
+      ],
+      "notes": "Có đề mẫu miễn phí, New Insight practice test và danh mục sách IELTS chính thức. Sách đầy đủ trả phí; bản quyền số hóa cần xác nhận riêng.",
+      "priority": 1,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.cambridgeenglish.org/exams-and-tests/ielts/preparation/"
+      },
+      "resources": [
+        {
+          "label": "New Insight into IELTS: full practice test",
+          "url": "https://www.cambridge.org/elt/insightielts/test.htm",
+          "kind": "hub"
+        },
+        {
+          "label": "Danh mục IELTS chính chủ",
+          "url": "https://shop.cambridge.org/english/exam/ielts",
+          "kind": "hub"
+        },
+        {
+          "label": "IELTS 21: hai phiên bản Academic và General",
+          "url": "https://shop.cambridge.org/english/family/2100169902",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic",
+        "general-training"
+      ]
+    },
+    {
+      "id": "iot",
+      "name": "IELTS Online Tests",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ieltsonlinetests.com/ielts-exam-library",
+      "access": "mixed",
+      "materials": [
+        "interactive",
+        "audio",
+        "answer-key",
+        "explanation",
+        "model-answer"
+      ],
+      "notes": "Thư viện theo bộ đề và kỹ năng; có Academic/General. Một số tính năng, PDF và chấm Writing/Speaking là dịch vụ riêng.",
+      "priority": 1,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ieltsonlinetests.com/ielts-exam-library"
+      },
+      "resources": [
+        {
+          "label": "Listening",
+          "url": "https://ieltsonlinetests.com/ielts-exam-library?skill=listening",
+          "kind": "hub"
+        },
+        {
+          "label": "Reading",
+          "url": "https://ieltsonlinetests.com/ielts-exam-library?skill=reading",
+          "kind": "hub"
+        },
+        {
+          "label": "Writing",
+          "url": "https://ieltsonlinetests.com/ielts-exam-library?skill=writing",
+          "kind": "hub"
+        },
+        {
+          "label": "Speaking",
+          "url": "https://ieltsonlinetests.com/ielts-exam-library?skill=speaking",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic",
+        "general-training"
+      ]
+    },
+    {
+      "id": "mini-ielts",
+      "name": "Mini IELTS",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading"
+      ],
+      "url": "https://mini-ielts.com/",
+      "access": "free",
+      "materials": [
+        "interactive",
+        "audio",
+        "answer-key"
+      ],
+      "notes": "Bài ngắn theo passage/section, có bộ lọc dạng câu hỏi và View Solution. Trang công bố không cần đăng ký.",
+      "priority": 1,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://mini-ielts.com/"
+      },
+      "resources": [
+        {
+          "label": "Reading passages",
+          "url": "https://mini-ielts.com/reading",
+          "kind": "hub"
+        },
+        {
+          "label": "Listening sections",
+          "url": "https://mini-ielts.com/listening",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "study4",
+      "name": "STUDY4",
+      "category": "vietnam",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://study4.com/tests/ielts/",
+      "access": "mixed",
+      "materials": [
+        "interactive",
+        "audio",
+        "transcript",
+        "answer-key",
+        "explanation"
+      ],
+      "notes": "Kho đề và luyện từng phần, giải thích tiếng Việt. Kiểm tra yêu cầu tài khoản ở từng bài; tránh đếm bản sao cùng một đề thành đề mới.",
+      "priority": 1,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://study4.com/tests/ielts/"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic",
+        "general-training"
+      ]
+    },
+    {
+      "id": "dol",
+      "name": "DOL Tự Học",
+      "category": "vietnam",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://tuhoc.dolenglish.vn/",
+      "access": "mixed",
+      "materials": [
+        "interactive",
+        "audio",
+        "transcript",
+        "answer-key",
+        "explanation",
+        "model-answer"
+      ],
+      "notes": "Có mock tests, bài L/R theo dạng và chủ đề, dictation, bài mẫu W/S. Đăng ký để mở thêm tính năng.",
+      "priority": 1,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://tuhoc.dolenglish.vn/"
+      },
+      "resources": [
+        {
+          "label": "Full mock tests",
+          "url": "https://tuhoc.dolenglish.vn/luyen-thi-ielts/free-ielts-online-test",
+          "kind": "hub"
+        },
+        {
+          "label": "Listening practice",
+          "url": "https://tuhoc.dolenglish.vn/luyen-thi-ielts/ielts-listening-practice",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "testpro",
+      "name": "IELTS Test Pro",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ielts-testpro.com/practice/",
+      "access": "mixed",
+      "materials": [
+        "interactive",
+        "audio",
+        "answer-key",
+        "explanation",
+        "model-answer"
+      ],
+      "notes": "Có luyện kỹ năng và full tests; chấm AI nâng cao có gói trả phí. Có giao diện tiếng Việt.",
+      "priority": 1,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ielts-testpro.com/practice/"
+      },
+      "resources": [
+        {
+          "label": "Full tests",
+          "url": "https://ielts-testpro.com/full-test/",
+          "kind": "hub"
+        },
+        {
+          "label": "Reading",
+          "url": "https://ielts-testpro.com/practice/reading/",
+          "kind": "hub"
+        },
+        {
+          "label": "Listening",
+          "url": "https://ielts-testpro.com/practice/listening/",
+          "kind": "hub"
+        },
+        {
+          "label": "Speaking",
+          "url": "https://ielts-testpro.com/practice/speaking/",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "ielts-up",
+      "name": "IELTS-up",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ielts-up.com/",
+      "access": "free",
+      "materials": [
+        "html",
+        "interactive",
+        "audio",
+        "transcript",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Full Listening, Reading và bài tập theo dạng; Writing/Speaking có hướng dẫn và bài mẫu. Trang giới thiệu có thông tin kỳ thi cũ, nên dùng phần bài luyện và đối chiếu thể thức với IELTS.org.",
+      "priority": 1,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ielts-up.com/"
+      },
+      "resources": [
+        {
+          "label": "Full Listening tests",
+          "url": "https://www.ielts-up.com/listening/ielts-listening-practice.html",
+          "kind": "hub"
+        },
+        {
+          "label": "Listening theo dạng câu hỏi",
+          "url": "https://ielts-up.com/listening/ielts-listening-exercises.html",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "exam-english",
+      "name": "Exam English",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.examenglish.com/IELTS/",
+      "access": "free",
+      "materials": [
+        "interactive",
+        "audio",
+        "answer-key"
+      ],
+      "notes": "Có Academic Reading, General Reading, Listening và mẫu Writing/Speaking; hỗ trợ luyện trên web.",
+      "priority": 1,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.examenglish.com/IELTS/"
+      },
+      "resources": [
+        {
+          "label": "Academic Reading full test",
+          "url": "https://www.examenglish.com/IELTS/cbIELTS_reading.htm",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "engexam",
+      "name": "EngExam",
+      "category": "bank",
+      "skills": [
+        "reading"
+      ],
+      "url": "https://engexam.info/ielts-reading-practice-tests/",
+      "access": "free",
+      "materials": [
+        "interactive",
+        "pdf",
+        "answer-key",
+        "explanation",
+        "vocabulary"
+      ],
+      "notes": "Academic Reading có đáp án giải thích và từ vựng; có bản in/PDF. Chỉ tính các bài IELTS, không gộp FCE/CAE.",
+      "priority": 1,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://engexam.info/ielts-reading-practice-tests/"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic"
+      ]
+    },
+    {
+      "id": "buddy",
+      "name": "IELTS Buddy",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.ieltsbuddy.com/ielts-practice-tests.html",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "pdf",
+        "audio",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Đề và bài mẫu 4 kỹ năng; nhiều tài liệu tải miễn phí. Một số nút full test trỏ tới nhà cung cấp khác.",
+      "priority": 1,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.ieltsbuddy.com/ielts-practice-tests.html"
+      },
+      "resources": [
+        {
+          "label": "Tài liệu PDF miễn phí",
+          "url": "https://www.ieltsbuddy.com/free-ielts-download.html",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "mentor",
+      "name": "IELTS Mentor",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.ielts-mentor.com/tag/academic-reading",
+      "access": "free",
+      "materials": [
+        "html",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Có Reading, Writing, Listening mẫu và Speaking/cue cards. Website đang đổi đường dẫn: dùng danh mục tag mới; URL /ielts-sample cũ trả 404 khi kiểm tra HTTP.",
+      "priority": 1,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.ielts-mentor.com/tag/academic-reading"
+      },
+      "resources": [
+        {
+          "label": "Writing Task 1",
+          "url": "https://www.ielts-mentor.com/tag/academic-writing-task-1",
+          "kind": "hub"
+        },
+        {
+          "label": "Writing Task 2",
+          "url": "https://www.ielts-mentor.com/tag/writing-task-2",
+          "kind": "hub"
+        },
+        {
+          "label": "Speaking cue cards",
+          "url": "https://www.ielts-mentor.com/cue-card-sample",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic",
+        "general-training"
+      ]
+    },
+    {
+      "id": "ielts-exam",
+      "name": "IELTS Exam / IELTS Writing Info",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.ielts-writing.info/EXAM/",
+      "access": "free",
+      "materials": [
+        "html",
+        "pdf",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "ielts-exam.net chuyển về miền này; chỉ tính một nguồn. Có practice tests, downloads và mẫu theo kỹ năng.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.ielts-writing.info/EXAM/"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "liz",
+      "name": "IELTS Liz",
+      "category": "writing-speaking",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ieltsliz.com/",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "audio",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Nhiều bài luyện ngắn và Writing/Speaking mẫu; bài Reading theo dạng. Một số khóa chuyên sâu trả phí.",
+      "priority": 1,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ieltsliz.com/"
+      },
+      "resources": [
+        {
+          "label": "Reading: bài luyện theo dạng",
+          "url": "https://ieltsliz.com/ielts-reading-lessons-information-and-tips/",
+          "kind": "hub"
+        },
+        {
+          "label": "Từ vựng và bài tập",
+          "url": "https://ieltsliz.com/vocabulary/",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "jacky",
+      "name": "IELTS Jacky",
+      "category": "writing-speaking",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.ieltsjacky.com/ielts-speaking-questions.html",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "pdf",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Trang Speaking có 30 mock test cards theo công bố; Reading có bài mẫu/đáp án. Kiểm tra tài liệu gốc khi liên kết ngoài.",
+      "priority": 1,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.ieltsjacky.com/ielts-speaking-questions.html"
+      },
+      "resources": [
+        {
+          "label": "Reading sample có đáp án",
+          "url": "https://www.ieltsjacky.com/ielts-reading-practice-sample-1.html",
+          "kind": "sample"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "advantage",
+      "name": "IELTS Advantage",
+      "category": "writing-speaking",
+      "skills": [
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.ieltsadvantage.com/2015/07/15/100-ielts-writing-sample-questions/",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "pdf",
+        "model-answer"
+      ],
+      "notes": "Trang công bố hơn 100 câu Task 2, chia dạng và chủ đề; có bài mẫu. Không xác nhận độc lập nhãn 'past paper' của từng câu.",
+      "priority": 1,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.ieltsadvantage.com/2015/07/15/100-ielts-writing-sample-questions/"
+      },
+      "resources": [
+        {
+          "label": "Task 2 sample answers",
+          "url": "https://www.ieltsadvantage.com/2015/09/18/ielts-writing-task-2-sample/",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "blog",
+      "name": "IELTS-Blog",
+      "category": "writing-speaking",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.ielts-blog.com/",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "pdf",
+        "audio",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Bài mẫu W/S và bộ High Scorer’s Choice có phần mẫu miễn phí; bộ đầy đủ trả phí. Các bài recall là nguồn thứ cấp.",
+      "priority": 2,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.ielts-blog.com/"
+      },
+      "resources": [
+        {
+          "label": "Academic Reading sample",
+          "url": "https://www.ielts-blog.com/resources/academic%20reading%20sample.pdf",
+          "kind": "pdf"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "material",
+      "name": "IELTSMaterial",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ieltsmaterial.com/ielts-reading-practice-test/",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "pdf",
+        "audio",
+        "answer-key",
+        "explanation",
+        "model-answer"
+      ],
+      "notes": "Có Reading theo passage/full test và bài mẫu W/S; một số đáp án/download yêu cầu mở khóa. Chưa xác nhận quyền phân phối lại.",
+      "priority": 2,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ieltsmaterial.com/ielts-reading-practice-test/"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "test-online",
+      "name": "IELTS Test Online",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.ieltstestonline.com/free-ielts-practice-tests/",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "interactive",
+        "answer-key",
+        "explanation",
+        "model-answer"
+      ],
+      "notes": "Bài luyện miễn phí theo dạng Reading cùng các tài liệu kỹ năng; có dịch vụ thi thử/khóa học riêng.",
+      "priority": 2,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.ieltstestonline.com/free-ielts-practice-tests/"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "web",
+      "name": "IELTS Web",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ieltsweb.com/",
+      "access": "mixed",
+      "materials": [
+        "interactive",
+        "audio",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Có Listening, Academic/General Reading, Writing và Speaking. Một số chức năng có Log In/Sign Up; không coi nhãn Cambridge trên trang là giấy phép.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ieltsweb.com/"
+      },
+      "resources": [
+        {
+          "label": "Listening",
+          "url": "https://ieltsweb.com/listening",
+          "kind": "hub"
+        },
+        {
+          "label": "Academic Reading",
+          "url": "https://ieltsweb.com/ielts-academic-reading-practice-tests",
+          "kind": "hub"
+        },
+        {
+          "label": "General Training Reading",
+          "url": "https://ieltsweb.com/ielts-general-reading-practice-tests",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic",
+        "general-training"
+      ]
+    },
+    {
+      "id": "progress",
+      "name": "IELTS Progress",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ieltsprogress.com/",
+      "access": "free",
+      "materials": [
+        "html",
+        "audio",
+        "transcript",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Các mục full Reading/Listening, scripts, answers và W/S. Nhiều nội dung theo sách Cambridge; cần khử trùng giữa các website.",
+      "priority": 3,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ieltsprogress.com/"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "practice-online",
+      "name": "IELTS Practice Online",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ieltspracticeonline.com/",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "audio",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Có practice tests và bài mẫu theo kỹ năng. Có bài đăng lại sách/tài liệu tác giả khác; chỉ đưa vào danh mục liên kết chờ rà soát.",
+      "priority": 3,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ieltspracticeonline.com/"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "fever",
+      "name": "IELTS Fever",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ieltsfever.org/academic-reading/",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "pdf",
+        "interactive",
+        "audio",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Reading PDF kèm answer links, có nền tảng CBT riêng. Các bài sưu tầm/recall cần kiểm tra nguồn và độ chính xác.",
+      "priority": 3,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ieltsfever.org/academic-reading/"
+      },
+      "resources": [
+        {
+          "label": "Reading PDF và answer links",
+          "url": "https://ieltsfever.org/ielts-reading-test-academic-module-samples/",
+          "kind": "hub"
+        },
+        {
+          "label": "Nền tảng CBT",
+          "url": "https://cbt.ieltsfever.org/",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "bank",
+      "name": "IELTS-Bank",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.ielts-bank.com/ielts-question-bank",
+      "access": "mixed",
+      "materials": [
+        "interactive",
+        "audio",
+        "answer-key",
+        "explanation",
+        "model-answer"
+      ],
+      "notes": "Trang tự công bố ngân hàng bài tự biên soạn; có giới hạn tài khoản/chấm AI. Nguồn mới, cần lấy mẫu kiểm định trước khi ưu tiên.",
+      "priority": 3,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.ielts-bank.com/ielts-question-bank"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "for-free",
+      "name": "IELTS for Free",
+      "category": "bank",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.ieltsforfree.com/ielts-academic-practice-tests/",
+      "access": "free",
+      "materials": [
+        "html",
+        "audio",
+        "answer-key",
+        "explanation",
+        "model-answer"
+      ],
+      "notes": "Có các bộ Academic và General Training; L/S dùng chung giữa hai hệ nên không cộng trùng. Chưa kiểm tra từng đề.",
+      "priority": 3,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.ieltsforfree.com/ielts-academic-practice-tests/"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic",
+        "general-training"
+      ]
+    },
+    {
+      "id": "ielts-net",
+      "name": "IELTS.net",
+      "category": "bank",
+      "skills": [
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ielts.net/",
+      "access": "free",
+      "materials": [
+        "interactive",
+        "answer-key",
+        "explanation",
+        "model-answer"
+      ],
+      "notes": "Reading tương tác và bài W/S. Listening còn ghi Coming soon tại thời điểm kiểm tra, nên không gắn kỹ năng Listening.",
+      "priority": 3,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ielts.net/"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic"
+      ]
+    },
+    {
+      "id": "studio",
+      "name": "IELTS Studio",
+      "category": "commercial",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.ieltsstudio.com/ielts-mock-test",
+      "access": "mixed",
+      "materials": [
+        "interactive",
+        "audio",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Cần tài khoản; trang công bố một full mock miễn phí mỗi tuần, các tính năng khác theo gói. Cần kiểm định nội dung và chấm AI.",
+      "priority": 3,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.ieltsstudio.com/ielts-mock-test"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic",
+        "general-training"
+      ]
+    },
+    {
+      "id": "magoosh",
+      "name": "Magoosh IELTS",
+      "category": "commercial",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ielts.magoosh.com/practice_tests/free",
+      "access": "mixed",
+      "materials": [
+        "interactive",
+        "audio",
+        "answer-key",
+        "explanation"
+      ],
+      "notes": "Free practice test yêu cầu email; có giải thích và các gói luyện trả phí. Đây là nội dung tự phát triển, cần trao đổi giấy phép nếu muốn nhập.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ielts.magoosh.com/practice_tests/free"
+      },
+      "resources": [
+        {
+          "label": "Giải thích đáp án practice test",
+          "url": "https://ielts.magoosh.com/practice-test-explanations",
+          "kind": "hub"
+        },
+        {
+          "label": "Magoosh Basic: nội dung luyện miễn phí theo tài khoản",
+          "url": "https://ielts.magoosh.com/basic",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "bestmytest",
+      "name": "BestMyTest",
+      "category": "commercial",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.bestmytest.com/ielts/test",
+      "access": "mixed",
+      "materials": [
+        "interactive",
+        "audio",
+        "answer-key",
+        "explanation",
+        "model-answer"
+      ],
+      "notes": "Có free test và các bài khóa theo trial/gói. Không coi số bài quảng cáo trên site là số đề đã kiểm duyệt.",
+      "priority": 2,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.bestmytest.com/ielts/test"
+      },
+      "resources": [
+        {
+          "label": "Danh mục bài Listening",
+          "url": "https://www.bestmytest.com/ielts/listening",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic",
+        "general-training"
+      ]
+    },
+    {
+      "id": "e2",
+      "name": "E2Language",
+      "category": "commercial",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.e2language.com/pages/free-download/e2-ielts-full-practice-test-2025",
+      "access": "mixed",
+      "materials": [
+        "pdf",
+        "audio",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Có bản tải practice test và mock miễn phí theo điều kiện đăng ký; nền tảng có các gói trả phí.",
+      "priority": 2,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.e2language.com/pages/free-download/e2-ielts-full-practice-test-2025"
+      },
+      "resources": [
+        {
+          "label": "Full IELTS mock: trang đăng ký",
+          "url": "https://www.e2language.com/pages/promotions/free-full-ielts-mock-test",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic",
+        "general-training"
+      ]
+    },
+    {
+      "id": "testglider",
+      "name": "TestGlider IELTS",
+      "category": "commercial",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.testglider.com/ielts/en",
+      "access": "mixed",
+      "materials": [
+        "interactive",
+        "audio",
+        "answer-key",
+        "explanation",
+        "model-answer"
+      ],
+      "notes": "Có drills, mock tests và phản hồi AI. Cần đăng nhập/kiểm tra gói; band AI chỉ là ước tính.",
+      "priority": 3,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.testglider.com/ielts/en"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "flex",
+      "name": "IELTS Flex / GEL",
+      "category": "commercial",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ieltsflex.com/",
+      "access": "mixed",
+      "materials": [
+        "interactive",
+        "audio",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "gelielts.com chuyển sang IELTS Flex; tài khoản miễn phí có mini-mock và lớp học thử theo công bố.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ieltsflex.com/"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "tcy",
+      "name": "TCYonline",
+      "category": "commercial",
+      "skills": [
+        "listening",
+        "reading",
+        "writing"
+      ],
+      "url": "https://www.tcyonline.com/tests/ielts",
+      "access": "mixed",
+      "materials": [
+        "interactive",
+        "audio",
+        "answer-key"
+      ],
+      "notes": "Có Academic/General mock cùng đề riêng L/R/W; cần tài khoản cho việc làm bài. Danh mục cũng có bài cộng đồng, nên chọn nguồn TCY.",
+      "priority": 2,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.tcyonline.com/tests/ielts"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic",
+        "general-training"
+      ]
+    },
+    {
+      "id": "focus",
+      "name": "IELTS Focus",
+      "category": "writing-speaking",
+      "skills": [
+        "writing"
+      ],
+      "url": "https://ieltsfocus.com/2018/12/09/model-answers-ielts-writing-task-2/",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "model-answer"
+      ],
+      "notes": "Mẫu theo dạng Task 2 và bài tập phân tích cách viết; phù hợp bổ sung Writing hơn là full test.",
+      "priority": 2,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ieltsfocus.com/2018/12/09/model-answers-ielts-writing-task-2/"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "podcast",
+      "name": "IELTS Podcast",
+      "category": "writing-speaking",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.ieltspodcast.com/",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "audio",
+        "interactive",
+        "model-answer"
+      ],
+      "notes": "Có đề/bài luyện, câu Task 2, bài mẫu và computer-based Listening; khóa học/chấm bài có phí.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.ieltspodcast.com/"
+      },
+      "resources": [
+        {
+          "label": "Ngân hàng câu Writing Task 2",
+          "url": "https://www.ieltspodcast.com/sample-ielts-task-2-questions/",
+          "kind": "hub"
+        },
+        {
+          "label": "Computer-based Listening",
+          "url": "https://www.ieltspodcast.com/listening/computerbased-listening/",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "keith",
+      "name": "Keith Speaking Academy",
+      "category": "writing-speaking",
+      "skills": [
+        "speaking"
+      ],
+      "url": "https://keithspeakingacademy.com/ielts-speaking-free-live-lessons/",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "pdf",
+        "video",
+        "model-answer"
+      ],
+      "notes": "Bài Speaking theo chủ đề kèm tài liệu lesson; có khóa trả phí. Đây là nguồn luyện chủ đề, không phải full mock 4 kỹ năng.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://keithspeakingacademy.com/ielts-speaking-free-live-lessons/"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "leader",
+      "name": "IELTS Leader",
+      "category": "bank",
+      "skills": [
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ieltsleader.com/free-ielts-general-reading-practice-test",
+      "access": "free",
+      "materials": [
+        "html",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Ưu tiên General Training: có full Reading miễn phí và letter samples. Để riêng, không trộn vào kho Academic của app.",
+      "priority": 3,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ieltsleader.com/free-ielts-general-reading-practice-test"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "general-training"
+      ]
+    },
+    {
+      "id": "zim",
+      "name": "ZIM Academy",
+      "category": "vietnam",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://zim.vn/practice-test",
+      "access": "mixed",
+      "materials": [
+        "interactive",
+        "answer-key",
+        "explanation",
+        "model-answer"
+      ],
+      "notes": "Kho IELTS Practice Test do ZIM biên soạn theo công bố, có giải thích. Bài giảng W/S là nguồn bổ sung; kiểm tra các bước đăng nhập khi làm bài.",
+      "priority": 1,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://zim.vn/practice-test"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "prep",
+      "name": "PREP Test Practice",
+      "category": "vietnam",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://prepedu.com/vi/news/chinh-thuc-mo-ban-phong-luyen-thi-ielts-ao-4-ky-nang",
+      "access": "paid",
+      "materials": [
+        "interactive",
+        "audio",
+        "explanation",
+        "model-answer"
+      ],
+      "notes": "Có phòng luyện đề 4 kỹ năng và chấm AI. Link là trang giới thiệu chính chủ; thông tin mở bán cũ không xác nhận ưu đãi đang còn hiệu lực.",
+      "priority": 3,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://prepedu.com/vi/news/chinh-thuc-mo-ban-phong-luyen-thi-ielts-ao-4-ky-nang"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "nguyen-huyen",
+      "name": "IELTS Nguyễn Huyền",
+      "category": "vietnam",
+      "skills": [
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ielts-nguyenhuyen.com/pdf-tong-hop-tai-lieu-luyen-thi-ielts-writing-mien-phi/",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "pdf",
+        "model-answer",
+        "vocabulary"
+      ],
+      "notes": "Tài liệu Writing/Speaking với hướng dẫn và từ vựng tiếng Việt; có cả liên kết tài liệu tác giả khác, cần giữ đúng xuất xứ.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ielts-nguyenhuyen.com/pdf-tong-hop-tai-lieu-luyen-thi-ielts-writing-mien-phi/"
+      },
+      "resources": [
+        {
+          "label": "Tài liệu Speaking",
+          "url": "https://ielts-nguyenhuyen.com/pdf-tong-hop-tai-lieu-luyen-thi-ielts-speaking-mien-phi/",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "fighter",
+      "name": "IELTS Fighter",
+      "category": "vietnam",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ielts-fighter.com/ielts-online-test.html",
+      "access": "mixed",
+      "materials": [
+        "interactive",
+        "answer-key",
+        "explanation"
+      ],
+      "notes": "Thi thử L/R và bài 4 kỹ năng theo đăng ký; một số luồng yêu cầu thông tin liên hệ để nhận đánh giá.",
+      "priority": 2,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ielts-fighter.com/ielts-online-test.html"
+      },
+      "resources": [
+        {
+          "label": "Đăng ký thi thử",
+          "url": "https://ieltsonlinetest.ielts-fighter.com/testfree",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "thanh-loan",
+      "name": "IELTS Thanh Loan",
+      "category": "vietnam",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ielts-thanhloan.com/",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "answer-key",
+        "explanation",
+        "model-answer"
+      ],
+      "notes": "Giải chi tiết các đề sách và bài mẫu tiếng Việt; phù hợp tham khảo lời giải, không tính các bản Cambridge lặp lại thành nội dung mới.",
+      "priority": 2,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ielts-thanhloan.com/"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "city",
+      "name": "IELTS CITY",
+      "category": "vietnam",
+      "skills": [
+        "writing",
+        "speaking"
+      ],
+      "url": "https://ieltscity.vn/tu-hoc-ielts/ielts-speaking/",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "model-answer",
+        "vocabulary"
+      ],
+      "notes": "Chuyên mục Speaking và Writing có câu hỏi/bài mẫu. Đề theo ngày thi hoặc forecast là nội dung bên thứ ba, không phải cam kết trúng đề.",
+      "priority": 2,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://ieltscity.vn/tu-hoc-ielts/ielts-speaking/"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "esl-lounge",
+      "name": "ESL Lounge – IELTS",
+      "category": "bank",
+      "skills": [
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.esl-lounge.com/student/ielts.php",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "interactive",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Có Academic Reading quizzes cùng Writing/Speaking practice. Tách khỏi các khóa luyện Cambridge/Listening tổng quát trên cùng site.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.esl-lounge.com/student/ielts.php"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "oxford",
+      "name": "Oxford Online English – IELTS",
+      "category": "writing-speaking",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.oxfordonlineenglish.com/free-ielts-preparation-lessons",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "video",
+        "explanation",
+        "model-answer"
+      ],
+      "notes": "Bài học/video miễn phí theo dạng và kỹ năng, có ví dụ thực hành; ưu tiên như tài liệu hướng dẫn, không xem là kho full tests.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.oxfordonlineenglish.com/free-ielts-preparation-lessons"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "collins",
+      "name": "Collins – Practice Tests for IELTS",
+      "category": "publisher",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://collins.co.uk/products/9780007499694",
+      "access": "paid",
+      "materials": [
+        "book",
+        "audio",
+        "transcript",
+        "answer-key",
+        "model-answer"
+      ],
+      "notes": "Nguồn sách đầy đủ trả phí; Vol.1 công bố 4 đề Academic và 2 bộ General R/W. Audio companion có điều kiện mật khẩu trong sách.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://collins.co.uk/products/9780007499694"
+      },
+      "resources": [
+        {
+          "label": "Audio companion; cần đáp ứng điều kiện trong sách",
+          "url": "https://collins.co.uk/pages/elt-elt-audio-resources",
+          "kind": "hub"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic",
+        "general-training"
+      ]
+    },
+    {
+      "id": "macmillan",
+      "name": "Macmillan – Ready for IELTS",
+      "category": "publisher",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.macmillanenglish.com/us/catalogue/courses/exam-preparation/ready-for-ielts-2nd-edition/levels-samples",
+      "access": "mixed",
+      "materials": [
+        "book",
+        "pdf",
+        "audio",
+        "answer-key"
+      ],
+      "notes": "Có trang samples chính thức; bộ sách đầy đủ và tài nguyên đi kèm theo gói. Phù hợp bài tập dạng câu hỏi hơn là chỉ full mocks.",
+      "priority": 2,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.macmillanenglish.com/us/catalogue/courses/exam-preparation/ready-for-ielts-2nd-edition/levels-samples"
+      },
+      "resources": [
+        {
+          "label": "Unit mẫu Ready for IELTS",
+          "url": "https://api.macmillanenglish.com/fileadmin/user_upload/Catalogue/Samples/Ready_for_series/Ready_for_IELTS_Student_Book_Unit_2.pdf",
+          "kind": "pdf"
+        }
+      ],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "academic"
+      ]
+    },
+    {
+      "id": "pearson",
+      "name": "Pearson – Practice Tests Plus",
+      "category": "publisher",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.pearson.com/languages/pl-pl/educators/pearson-english-journey-for-pls/adults/practice-tests-plus.html",
+      "access": "mixed",
+      "materials": [
+        "book",
+        "pdf",
+        "audio",
+        "answer-key"
+      ],
+      "notes": "Trang nhà xuất bản có mẫu IELTS trong dòng Practice Tests Plus. Phần lớn trang nói về nhiều kỳ thi, nên chỉ lấy phần mẫu ghi IELTS.",
+      "priority": 3,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.pearson.com/languages/pl-pl/educators/pearson-english-journey-for-pls/adults/practice-tests-plus.html"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "express",
+      "name": "Express Publishing – IELTS Practice Tests",
+      "category": "publisher",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://www.expresspublishing.co.uk/en/ielts-practice-tests-1",
+      "access": "paid",
+      "materials": [
+        "book",
+        "audio",
+        "answer-key"
+      ],
+      "notes": "Bộ practice tests từ nhà xuất bản; cần mua/trao đổi giấy phép cho nội dung đầy đủ. Trang sản phẩm không phải kho đề tải tự do.",
+      "priority": 3,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.expresspublishing.co.uk/en/ielts-practice-tests-1"
+      },
+      "resources": [],
+      "scope": "ielts",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": [
+        "unspecified"
+      ]
+    },
+    {
+      "id": "elllo",
+      "name": "ELLLO",
+      "category": "support",
+      "skills": [
+        "listening",
+        "speaking"
+      ],
+      "url": "https://elllo.org/",
+      "access": "free",
+      "materials": [
+        "audio",
+        "video",
+        "transcript",
+        "interactive",
+        "answer-key"
+      ],
+      "notes": "Nguồn luyện nghe nhiều giọng và hội thoại theo trình độ. Dùng cho dictation/shadowing; không quy điểm bài này thành band IELTS.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://elllo.org/"
+      },
+      "resources": [],
+      "scope": "supporting-english",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": []
+    },
+    {
+      "id": "randall",
+      "name": "Randall’s ESL Cyber Listening Lab",
+      "category": "support",
+      "skills": [
+        "listening",
+        "speaking"
+      ],
+      "url": "https://www.esl-lab.com/",
+      "access": "free",
+      "materials": [
+        "audio",
+        "transcript",
+        "interactive",
+        "answer-key",
+        "vocabulary"
+      ],
+      "notes": "Listening quizzes Easy/Intermediate/Difficult và Academic; có transcript. Một số transcript tự động có thể sai, cần rà soát.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.esl-lab.com/"
+      },
+      "resources": [],
+      "scope": "supporting-english",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": []
+    },
+    {
+      "id": "breaking-news",
+      "name": "Breaking News English",
+      "category": "support",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://breakingnewsenglish.com/",
+      "access": "free",
+      "materials": [
+        "html",
+        "pdf",
+        "audio",
+        "interactive",
+        "answer-key"
+      ],
+      "notes": "Bài tin theo nhiều mức độ với bài tập; hợp luyện nền và từ vựng theo chủ đề, không phải bộ đề chuẩn IELTS.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://breakingnewsenglish.com/"
+      },
+      "resources": [],
+      "scope": "supporting-english",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": []
+    },
+    {
+      "id": "test-english",
+      "name": "Test-English",
+      "category": "support",
+      "skills": [
+        "listening",
+        "reading",
+        "writing"
+      ],
+      "url": "https://test-english.com/",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "interactive",
+        "audio",
+        "answer-key",
+        "explanation"
+      ],
+      "notes": "Reading/Listening theo CEFR và bài học Writing; hữu ích cho nền tảng. Không gắn nhãn IELTS cho các bài kiểm tra tổng quát.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://test-english.com/"
+      },
+      "resources": [],
+      "scope": "supporting-english",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": []
+    },
+    {
+      "id": "daily-dictation",
+      "name": "DailyDictation",
+      "category": "support",
+      "skills": [
+        "listening",
+        "speaking"
+      ],
+      "url": "https://dailydictation.com/",
+      "access": "mixed",
+      "materials": [
+        "audio",
+        "video",
+        "transcript",
+        "interactive"
+      ],
+      "notes": "Bài nghe chép chính tả theo câu; có nội dung từ nhiều nhà cung cấp. Quyền dùng lại phải xác nhận theo từng nguồn gốc.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://dailydictation.com/"
+      },
+      "resources": [],
+      "scope": "supporting-english",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": []
+    },
+    {
+      "id": "learnenglish",
+      "name": "British Council LearnEnglish",
+      "category": "support",
+      "skills": [
+        "listening",
+        "reading",
+        "writing",
+        "speaking"
+      ],
+      "url": "https://learnenglish.britishcouncil.org/free-resources",
+      "access": "mixed",
+      "materials": [
+        "html",
+        "audio",
+        "video",
+        "transcript",
+        "interactive",
+        "answer-key"
+      ],
+      "notes": "Nguồn tiếng Anh theo CEFR, phù hợp người học nền tảng. Cùng tổ chức British Council nhưng là thư viện khác, không cộng vào số đề IELTS.",
+      "priority": 2,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://learnenglish.britishcouncil.org/free-resources"
+      },
+      "resources": [],
+      "scope": "supporting-english",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": []
+    },
+    {
+      "id": "voa",
+      "name": "VOA Learning English",
+      "category": "support",
+      "skills": [
+        "listening",
+        "reading"
+      ],
+      "url": "https://learningenglish.voanews.com/",
+      "access": "free",
+      "materials": [
+        "html",
+        "audio",
+        "video",
+        "transcript"
+      ],
+      "notes": "Tin/bài học tiếng Anh và audio để luyện nền; không phải đề IELTS. Kiểm tra điều kiện nội dung, ảnh và audio riêng, không mặc định mọi thành phần đều dùng lại tự do.",
+      "priority": 3,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://learningenglish.voanews.com/"
+      },
+      "resources": [],
+      "scope": "supporting-english",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": []
+    },
+    {
+      "id": "bbc",
+      "name": "BBC Learning English",
+      "category": "support",
+      "skills": [
+        "listening",
+        "reading",
+        "speaking"
+      ],
+      "url": "https://www.bbc.co.uk/learningenglish/",
+      "access": "free",
+      "materials": [
+        "html",
+        "audio",
+        "video",
+        "transcript",
+        "pdf"
+      ],
+      "notes": "Ví dụ 6 Minute English có transcript/từ vựng. Công cụ duyệt bị robots.txt ở trang chính; chỉ xác nhận tài liệu transcript được lập chỉ mục.",
+      "priority": 3,
+      "verification": {
+        "level": "indexed",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://downloads.bbc.co.uk/learningenglish/features/6min/141016_6mineng_learningenglish.pdf"
+      },
+      "resources": [
+        {
+          "label": "Ví dụ transcript 6 Minute English",
+          "url": "https://downloads.bbc.co.uk/learningenglish/features/6min/141016_6mineng_learningenglish.pdf",
+          "kind": "pdf"
+        }
+      ],
+      "scope": "supporting-english",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": []
+    },
+    {
+      "id": "news-in-levels",
+      "name": "News in Levels",
+      "category": "support",
+      "skills": [
+        "listening",
+        "reading"
+      ],
+      "url": "https://www.newsinlevels.com/",
+      "access": "free",
+      "materials": [
+        "html",
+        "audio",
+        "vocabulary"
+      ],
+      "notes": "Tin theo ba mức với audio; phù hợp bài nghe ngắn và tăng từ vựng. Không phải đề IELTS hoặc thang band IELTS.",
+      "priority": 3,
+      "verification": {
+        "level": "page",
+        "checkedOn": "2026-10-16",
+        "evidenceUrl": "https://www.newsinlevels.com/"
+      },
+      "resources": [],
+      "scope": "supporting-english",
+      "integration": {
+        "recommendedMode": "external-link",
+        "redistributionPermission": "unconfirmed",
+        "apiAvailability": "not-assessed"
+      },
+      "examTypes": []
+    }
+  ],
+  "excludedOrChanged": [
+    {
+      "name": "IELTS Simon blog cũ",
+      "url": "https://ielts-simon.com/",
+      "status": "old-blog-closed",
+      "note": "Trang tác giả cho biết blog cũ đã mất khi bên lưu trữ đóng cuối tháng 9/2025. Trang học hiện tại: https://ielts-simon.study/; không tính là kho miễn phí cũ."
+    },
+    {
+      "name": "IELTSpractice / Road to IELTS cũ",
+      "url": "https://www.ieltspractice.com/online/login.php",
+      "status": "transitioning",
+      "note": "Trang thông báo giải pháp mới đang chuẩn bị; tài khoản hiện hữu tiếp tục đăng nhập tới khi hết hạn. Không đưa vào nhóm kho mở dùng ngay."
+    },
+    {
+      "name": "IELTS Exam miền cũ",
+      "url": "https://www.ielts-exam.net/",
+      "status": "redirect",
+      "note": "Chuyển sang https://www.ielts-writing.info/EXAM/; không tính thành hai nguồn."
+    },
+    {
+      "name": "GEL IELTS miền cũ",
+      "url": "https://www.gelielts.com/",
+      "status": "redirect",
+      "note": "Chuyển sang https://ieltsflex.com/; chỉ tính một nguồn."
+    }
+  ]
+}

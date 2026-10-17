@@ -806,7 +806,9 @@
       '<div class="wr-ed-left">' +
       '<section class="card wr-prompt-card"><div class="wr-prompt-kicker">WRITING TASK ' + task + "</div>" +
       '<div class="tiny muted wr-prompt-time">You should spend about ' + limit + " minutes on this task.</div>" +
-      '<div class="wr-prompt-text">' + promptLinesHTML(p) + "</div>" + (task === 1 && p.chart ? chartHTML(p.chart) : "") + "</section>" +
+      '<div class="wr-prompt-text">' + promptLinesHTML(p) + "</div>" +
+      (p.source ? '<p class="small muted">' + esc(p.source) + "</p>" : "") +
+      (task === 1 && p.chart ? chartHTML(p.chart) : "") + "</section>" +
       (rev ? '<details class="card soft wr-help"><summary>' + ic("eye", 16) + " <span>Bài gốc (" + ((rev.detail || {}).words || 0) + " từ" + (rev.score && rev.score.band != null ? " · band ước tính " + fmtBand(rev.score.band) : "") + ")</span>" + ic("chevron-right", 16) + '</summary><div class="wr-essay wr-essay-sm">' + esc((rev.detail || {}).text || "") + "</div></details>" : "") +
       (t ? '<details class="card soft wr-help"><summary>' + ic("list", 16) + " <span>Outline & template — " + esc(t.name) + "</span>" + ic("chevron-right", 16) + "</summary>" +
         '<div class="wr-help-body">' + outlineHTML(t) + '<div class="wr-help-tpl">' + templateFramesHTML(t) + "</div></div></details>" : "") +

@@ -2,6 +2,8 @@
 
 Sổ tay luyện thi IELTS Academic cho một người học. Không cần cài đặt, không cần mạng (trừ phông chữ).
 
+Ngân hàng hiện có **12 đề Reading (36 passage)** và **12 đề Listening (48 section)**, mỗi đề đủ 40 câu. Đợt mở rộng mới thêm Practice Test 5–12 cho cả hai kỹ năng, tổng cộng 640 câu mới. Các gói Writing, Speaking và Dictation cũng đã được bổ sung. Xem [nội dung, xuất xứ và cách mở](NOI-DUNG.md).
+
 ## 1. Mở app
 
 - Bấm đúp vào `app/index.html`, mở bằng **Chrome** hoặc **Edge**.

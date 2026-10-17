@@ -91,6 +91,8 @@
   function passageHtml(p, words) {
     var html = '<h2 class="ex-ptitle">' + esc(p.title || "") + "</h2>" +
       (p.subtitle ? '<p class="ex-psub">' + p.subtitle + "</p>" : "") +
+      (p.provenance ? '<details class="small muted"><summary>Xuất xứ bài luyện</summary><p>' + esc(p.provenance.note || "Bài luyện biên soạn.") +
+        (p.provenance.url ? ' <a href="' + esc(p.provenance.url) + '" target="_blank" rel="noopener noreferrer">Tài liệu tham khảo: ' + esc(p.provenance.publisher || "nguồn gốc") + '</a>.' : "") + "</p></details>" : "") +
       toArr(p.paragraphs).map(function (para) {
         var o = typeof para === "string" ? { label: "", text: para } : para || {};
         return '<div class="ex-para' + (o.label ? " has-label" : "") + '">' + (o.label ? '<span class="ex-plabel">' + esc(o.label) + "</span>" : "") + "<p>" + (o.text || "") + "</p></div>";
