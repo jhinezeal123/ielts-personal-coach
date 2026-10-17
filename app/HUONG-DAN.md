@@ -39,6 +39,7 @@ Ngân hàng hiện có **12 đề Reading (36 passage)** và **12 đề Listenin
 - **Speaking**: câu hỏi theo topic cho cả 3 part, câu trả lời mẫu có cụm từ hay (chữ đỏ, kèm nghĩa), ghi âm câu trả lời, nghe lại và tự chấm. Bản ghi âm được lưu trong trình duyệt.
 - **Từ vựng**: mỗi ngày 8 từ mới (lấy từ bài đọc hôm nay trước), ôn theo lịch 1-2-5-7-14-30 ngày. Nhớ → sang mốc tiếp theo; Quên → quay lại sau 1 ngày. Ôn sớm không được tính.
 - **Sổ lỗi**: 5 cột Lỗi lặp lại | Ví dụ của mình | Vì sao sai | Cách sửa | Tuần kiểm tra lại. Mỗi lỗi được hẹn kiểm tra lại sau 7 ngày; khi đến hạn, bấm Đạt / Chưa đạt.
+- **Lịch học**: bảng tuần Thứ 2 → Chủ nhật, mỗi hàng là 1 giờ (00:00 → 24:00). Ghi lại giờ học trên trường, giờ về đến nhà, giờ tự học ở nhà hoặc bận việc khác — ô nào không cần thì để trống. Bấm một ô để chọn loại và gõ ghi chú (ví dụ tên môn học). Muốn điền nhanh: chọn một loại ở thanh công cụ rồi bấm (hoặc kéo chuột) qua nhiều ô. Có nút **Sao chép ngày** (ví dụ chép lịch Thứ 2 sang Thứ 3) và **Xoá tất cả**. Bên cạnh bảng là tổng kết mỗi ngày: số giờ ở trường, giờ tự học và giờ có thể dành cho IELTS. Lịch học được lưu cùng dữ liệu app và có trong bản sao lưu.
 - **Cài đặt**: hồ sơ, ngày thi, aim, band hiện tại, ghi chú điểm yếu, số phút mỗi ngày, số từ mới mỗi ngày, giọng đọc Listening, sao lưu / khôi phục, xoá dữ liệu.
 
 ## 6. Sao lưu và khôi phục

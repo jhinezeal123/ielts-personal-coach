@@ -1,0 +1,109 @@
+/* ==========================================================================
+   schedule.css — "Lịch học" weekly timetable page (sc-). Uses base.css tokens.
+   ========================================================================== */
+
+/* type colours (soft background + strong ink) */
+.sc-page .t-school { --sc-bg: var(--reading-50);   --sc-fg: var(--reading); }
+.sc-page .t-home   { --sc-bg: var(--speaking-50);  --sc-fg: var(--speaking); }
+.sc-page .t-study  { --sc-bg: var(--good-50);      --sc-fg: var(--good); }
+.sc-page .t-busy   { --sc-bg: var(--vocab-50);     --sc-fg: var(--vocab); }
+.sc-page .t-note   { --sc-bg: var(--paper-2);      --sc-fg: var(--ink-2); }
+.sc-modal .t-school { --sc-bg: var(--reading-50);  --sc-fg: var(--reading); }
+.sc-modal .t-home   { --sc-bg: var(--speaking-50); --sc-fg: var(--speaking); }
+.sc-modal .t-study  { --sc-bg: var(--good-50);     --sc-fg: var(--good); }
+.sc-modal .t-busy   { --sc-bg: var(--vocab-50);    --sc-fg: var(--vocab); }
+
+.sc-swatch {
+  display: inline-block; width: 12px; height: 12px; border-radius: 4px; flex: none;
+  background: var(--sc-bg); box-shadow: inset 0 0 0 1.5px var(--sc-fg);
+}
+.sc-chip { display: inline-flex; align-items: center; gap: 6px; }
+.sc-chip.active[class*="t-"] { background: var(--sc-bg); border-color: var(--sc-fg); color: var(--ink); box-shadow: 0 0 0 1px var(--sc-fg) inset; }
+
+/* ---------- tools ---------- */
+.sc-tools { display: flex; flex-direction: column; gap: 10px; }
+.sc-brush { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ---------- layout ---------- */
+.sc-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 18px; align-items: start; }
+.sc-grid-card { padding: 0; overflow: hidden; }
+
+/* scroll container: both axes, so header (top) and time column (left) can stick */
+.sc-scroll {
+  overflow: auto; max-height: min(72vh, 760px); -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain; border-radius: var(--radius);
+}
+.sc-table { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 760px; table-layout: fixed; font-size: 13px; }
+.sc-table th, .sc-table td { border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); padding: 0; }
+.sc-table thead th {
+  position: sticky; top: 0; z-index: 2; background: var(--card);
+  font-family: var(--font-display); font-weight: 400; font-size: 17px; color: var(--ink);
+  padding: 10px 6px 8px; text-align: center; border-bottom: 1.5px solid var(--line-2);
+}
+.sc-table .sc-corner { left: 0; z-index: 3; width: 104px; color: var(--muted); font-size: 15px; }
+.sc-time {
+  position: sticky; left: 0; z-index: 1; background: var(--card);
+  width: 104px; padding: 0 8px !important; text-align: left; white-space: nowrap;
+  font-weight: 600; font-size: 12.5px; color: var(--ink-2); font-variant-numeric: tabular-nums;
+  border-right: 1.5px solid var(--line-2) !important;
+}
+.sc-table tr.is-now .sc-time { color: var(--accent-ink); }
+.sc-table tr.is-now .sc-time::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-right: 5px; vertical-align: middle; }
+
+.sc-dayh.is-today { color: var(--accent-ink) !important; background: var(--writing-50) !important; }
+.sc-today-tag { display: block; font-family: var(--font-body); font-size: 10.5px; font-weight: 700; letter-spacing: .02em; color: var(--accent-ink); }
+
+.sc-td { height: 44px; }
+.sc-cell {
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 1px;
+  width: 100%; height: 100%; min-height: 44px; padding: 4px 7px; margin: 0;
+  border: 0; border-radius: 0; background: transparent; color: var(--ink); font: inherit; text-align: left;
+  cursor: pointer; overflow: hidden; transition: background-color var(--t, 160ms) ease, box-shadow var(--t, 160ms) ease;
+}
+.sc-cell.is-today { background: rgba(233, 114, 95, .05); }
+.sc-cell:hover { background: var(--paper-2); }
+.sc-cell:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--ink); position: relative; z-index: 1; }
+.sc-cell[class*="t-"] { background: var(--sc-bg); box-shadow: inset 3px 0 0 var(--sc-fg); }
+.sc-cell[class*="t-"]:hover { filter: brightness(.97); }
+.sc-cell[class*="t-"]:focus-visible { box-shadow: inset 3px 0 0 var(--sc-fg), inset 0 0 0 2px var(--ink); }
+.sc-empty { color: var(--line-2); font-size: 16px; line-height: 1; align-self: center; opacity: 0; transition: opacity 120ms ease; }
+.sc-cell:hover .sc-empty, .sc-cell:focus-visible .sc-empty { opacity: 1; }
+.sc-type { font-weight: 700; font-size: 11.5px; color: var(--sc-fg); line-height: 1.2; white-space: nowrap; }
+.sc-note { font-size: 12px; line-height: 1.25; color: var(--ink); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sc-page.is-painting .sc-cell { cursor: crosshair; user-select: none; }
+
+/* ---------- summary ---------- */
+.sc-summary { position: sticky; top: 16px; }
+.sc-sum-list { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.sc-sum-row { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: var(--radius-sm); background: var(--card); border: 1px solid var(--line); }
+.sc-sum-row.is-today { border-color: var(--accent); }
+.sc-sum-day { font-family: var(--font-display); font-weight: 400; font-size: 17px; }
+.sc-sum-parts { font-size: 13px; color: var(--ink-2); line-height: 1.45; }
+.sc-sep { margin: 0 6px; color: var(--muted); }
+.sc-sum-school { color: var(--reading); font-weight: 700; }
+.sc-sum-study { color: var(--good); font-weight: 700; }
+.sc-sum-home { color: var(--speaking); font-weight: 700; }
+.sc-sum-note { margin: 10px 0 0; }
+
+/* ---------- editor modal ---------- */
+.sc-editor { display: flex; flex-direction: column; gap: 14px; }
+.sc-ed-types { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1180px) {
+  .sc-layout { grid-template-columns: minmax(0, 1fr); }
+  .sc-summary { position: static; }
+  .sc-sum-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+}
+@media (max-width: 640px) {
+  .sc-grid-card { padding: 0; }
+  .sc-scroll { max-height: 70vh; border-radius: 16px; }
+  .sc-table { min-width: 640px; font-size: 12px; }
+  .sc-table .sc-corner, .sc-time { width: 76px; }
+  .sc-time { font-size: 11px; padding: 0 5px !important; }
+  .sc-table thead th { font-size: 15px; padding: 8px 4px 6px; }
+  .sc-td, .sc-cell { min-height: 40px; height: 40px; }
+  .sc-cell { padding: 3px 5px; }
+  .sc-page .page-actions { width: 100%; }
+  .sc-sum-list { grid-template-columns: minmax(0, 1fr); }
+}

@@ -27,6 +27,7 @@ css/practice.css    (B)    listening/reading landing pages, analysis, dictation
 css/writing.css     (W)
 css/speaking.css    (S)
 css/vocab.css       (V)
+css/schedule.css    (SC)   Lịch học (weekly timetable) — see §10
 
 js/core.js          (A1)   namespace, store, StudyClock, router, helpers, stats, plan, SRS, errors, TTS, audio DB
 data/vocab-bank.js  (V)
@@ -57,6 +58,7 @@ js/pages/speaking.js  (S)
 js/pages/vocab.js     (V)
 js/pages/errors.js    (A2)
 js/pages/settings.js  (A2)
+js/pages/schedule.js  (SC)   Lịch học — see §10
 js/app.js           (A1)   boot: onboarding, router start, topbar, global timer widget
 ```
 
@@ -523,3 +525,37 @@ Onboarding (A1, first run): friendly 3-step modal: name + exam date → current 
 - Keyboard: Enter submits where natural; visible focus rings.
 - Verify your JS parses: run `node --check <file>` on every JS file you create (Node is available).
 - Keep strings Vietnamese with correct diacritics.
+
+---
+
+## 10. Lịch học (weekly school timetable) — `#/schedule` (SC)
+
+Files: `js/pages/schedule.js` (page, registered with `group:"study"`, `order:3.5`, icon `calendar`, so it appears in the
+sidebar right after "Hôm nay"; nav comes from `registerPage`, no `navDefaults` entry needed) and `css/schedule.css`
+(`sc-` prefix). No other file depends on it.
+
+- Grid: 7 columns Thứ 2 … Thứ 7, Chủ nhật (Mon→Sun) × 24 one-hour rows "00:00–01:00" … "23:00–24:00". Today's column
+  is highlighted using the **VN calendar date** (`IELTS.weekday(IELTS.calendarTodayVN())`, no 06:00 study-day shift, because a
+  school timetable follows the real weekday); the current VN hour row gets a dot. The grid scrolls in its own container:
+  header row sticky to the top, time column sticky to the left (works at 380px).
+- Every cell is optional and is a `<button>`. Mode "Sửa từng ô" (default) opens a small modal: pick one type
+  (toggle) and/or a note (≤ 40 chars), Lưu / Xoá ô / Huỷ, Enter saves. Brush modes (one of the 4 types or "Xoá ô"): tap/click
+  or Enter/Space paints a cell (keeps its note), mouse drag paints several cells (touch keeps native scrolling, tap to paint).
+  Arrow keys move between cells, Delete/Backspace clears. Extras: "Sao chép ngày" (replaces the target day's 24 slots) and
+  "Xoá tất cả" (`IELTS.confirm`, danger).
+- Types and colours: `school` "Học trên trường" (`--reading`/`--reading-50`), `home` "Về đến nhà" (`--speaking`),
+  `study` "Tự học ở nhà" (`--good`), `busy` "Bận việc khác" (`--vocab`); note-only cells use `--paper-2`.
+- Per-day summary: "N giờ ở trường · N giờ tự học · N giờ có thể học (= trống + tự học) · về nhà HH:00" (first `home` slot).
+  Plain counts, never a score.
+- Storage: inside the main state (`localStorage["ielts-coach-v1"]`), therefore automatically included in
+  `exportBackup` / `importBackup` and wiped by `resetAll`. Created lazily by the page (not in `defaultState`); readers must
+  tolerate it being absent or malformed.
+  ```js
+  state.schedule = {
+    version: 1,
+    updatedAt: ISO | "",
+    cells: { "<day>-<HH>": { type: "school"|"home"|"study"|"busy"|"", note: "" } }  // day: mon tue wed thu fri sat sun; HH "00".."23"
+  }
+  ```
+  Empty cells are absent (a cell is stored only if it has a type or a non-empty note). Notes are user text → always `IELTS.esc()`.
+- Read-only helper for other pages: `IELTS.schedule = { DAYS, TYPES, get(key), daySummary(dayId) }`.
