@@ -11,6 +11,8 @@
     Never forces, never resets, never pushes.
   - Appends to scripts/auto-update.log and writes app/update-status.js
     (window.IELTS_UPDATE_STATUS = {...}) for the app to display.
+  - Then runs scripts/sync-content.ps1 (lesson packs, content channel) regardless of
+    the release result; a sync failure never affects the release flow.
   - Always exits 0 (safe for the Scheduled Task).
 
   Windows PowerShell 5.1 compatible. ASCII-only source.
@@ -226,6 +228,18 @@ if ($MyInvocation.InvocationName -ne '.') {
     } catch {
         Write-Log ("Unexpected error: " + $_.Exception.Message) 'ERROR'
         try { Write-Status -Result 'error' -Message ("Unexpected error: " + $_.Exception.Message) -LocalVersion (Get-LocalVersion) -LatestVersion '' } catch { }
+    }
+    # Content channel (lesson packs): runs after the release check whatever its result.
+    # A sync failure must never break the release flow (sync-content.ps1 also catches everything itself).
+    try {
+        $sync = Join-Path $PSScriptRoot 'sync-content.ps1'
+        if (Test-Path -LiteralPath $sync) {
+            if ($IsDry) { & $sync -DryRun } else { & $sync }
+        } else {
+            Write-Log 'sync-content.ps1 not found; content sync skipped.' 'WARN'
+        }
+    } catch {
+        Write-Log ("Content sync failed: " + $_.Exception.Message) 'WARN'
     }
     exit 0
 }

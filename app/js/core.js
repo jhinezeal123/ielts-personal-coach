@@ -15,6 +15,7 @@
    * ------------------------------------------------------------------ */
   IELTS.data = IELTS.data || {
     listeningTests: [],
+    listeningClips: [],   // real-audio clips from content packs (SPEC §11)
     readingTests: [],
     dictation: [],
     vocab: { words: [] },

@@ -49,6 +49,7 @@ data/writing-bank.js(W)
 data/writing-extra.js (14 Task 1 + 25 Task 2; nạp sau bank gốc)
 data/speaking-bank.js(S)
 data/speaking-extra.js (10 topic; nạp sau bank gốc)
+js/packs.js                content channel: IELTS.registerPack / resolveAudio + loader for optional content-packs/index.js (§11)
 js/exam.js          (B)    shared exam engine
 js/pages/dashboard.js (A2)
 js/pages/roadmap.js   (A2)
@@ -70,6 +71,7 @@ js/app.js           (A1)   boot: onboarding, router start, topbar, global timer 
 ```js
 IELTS.data = {
   listeningTests: [],   // pushed by listening-*.js
+  listeningClips: [],   // real-audio clips, only from content packs (§11)
   readingTests: [],     // pushed by reading-*.js
   dictation: [],        // pushed by dictation.js
   vocab: { words: [] }, // set by vocab-bank.js (push into IELTS.data.vocab.words)
@@ -372,7 +374,10 @@ ErrorItem = { id, error /*lỗi lặp lại*/, example /*ví dụ của mình*/,
 - Display label for re-check: "Tuần dd/mm – dd/mm" (the 7-day week starting at recheckDay) plus a badge "Đến hạn" when due.
 
 ### 4.12 TTS & audio (A1)
-Real exam audio is not shipped, so listening uses the Web Speech API; data may optionally include `audio: "url"` later.
+Built-in tests ship no audio, so listening uses the Web Speech API. A section (or clip) may set `audio` — a URL or
+`"asset:<file>"` from a content pack (§11). The player then uses an `<audio>` element: local copy
+(`content-packs/audio/<file>`) → remote asset URL → TTS of the `script`/`transcript` if both fail. Play-once (exam) and
+practice rules are unchanged; practice mode with real audio also gets a seek bar and speed 0.75× / 1× / 1.25×.
 - `IELTS.tts.ready()` → Promise (voices loaded). `IELTS.tts.voices()` → English voices, en-GB first.
 - `IELTS.tts.speak(text, { voice: "f"|"m"|"f2"|"m2", rate }) → Promise` (resolves on end or cancel).
 - `IELTS.tts.playScript(lines, { rate, onLine(i), shouldContinue() }) → Promise` — lines `[{ speaker, voice, text }]`, plays
@@ -587,3 +592,49 @@ sidebar right after "Hôm nay"; nav comes from `registerPage`, no `navDefaults` 
   ```
   Empty cells are absent (a cell is stored only if it has a type or a non-empty note). Notes are user text → always `IELTS.esc()`.
 - Read-only helper for other pages: `IELTS.schedule = { DAYS, TYPES, get(key), daySummary(dayId) }`.
+
+---
+
+## 11. Content channel (lesson packs without an app release)
+
+Binding detail: `content/CONTRACT.md`. App releases (§9) are for features only; lessons ship by pushing packs to `main`.
+
+- **Repo side:** `content/packs/<pack-id>.js` (classic script calling `IELTS.registerPack({...})`, id == file name, kebab-case)
+  and the generated `content/manifest.json` (`{schema:1, contentVersion, generatedAt, packs:[{id, file, version,
+  minAppVersion, title, sha256, assets}]}`). `node scripts/build-content-manifest.mjs` validates every pack (id == file
+  name, IDs unique across packs **and** built-in `app/data`, every `asset:` reference listed in `assets`, semver
+  `minAppVersion`, same content rules as built-in data — except that sections with a real `audio` recording
+  (official transcripts) skip the 450–750 word script-length rule, which still applies to TTS-only sections) and bumps `contentVersion` only when the pack list/hashes changed.
+  `sha256` is computed on LF-normalised text (what raw.githubusercontent.com serves). `node scripts/check-content.mjs`
+  checks built-in data and all packs. Both work when `content/packs/` is empty.
+- **Installed side (git-ignored `app/content-packs/`):** `scripts/sync-content.ps1` (PowerShell 5.1, called at the end of
+  `auto-update.ps1` whatever the release result, so the 07:00/logon task and `cap-nhat-ngay.cmd` cover it) downloads the
+  manifest, changed packs (sha256-verified, temp file → move), missing audio assets (browser-like User-Agent), prunes packs
+  and audio no longer listed, and writes `content-packs/index.js` **last**
+  (`window.IELTS_CONTENT_INDEX = {contentVersion, syncedAt, packs:[{id, file, version, minAppVersion}]}`). It writes only
+  inside `app/content-packs/`, logs to `scripts/auto-update.log`, always exits 0. `-ManifestUrl` (http(s) or file://, for
+  testing) and `-DryRun` are supported.
+- **Loader (`js/packs.js`, after all built-in data files, before `js/exam.js`):** injects `content-packs/index.js`
+  (optional; same one-line `ERR_FILE_NOT_FOUND` tradeoff on file:// as `update-status.js` in §9), then injects each listed
+  pack whose `minAppVersion` ≤ `IELTS_VERSION` (semver), one after another. `js/app.js` boots via
+  `IELTS.whenPacksReady(cb)` — after every pack has loaded or errored, immediately when there is no index, and at the latest
+  after 8 s.
+- **`IELTS.registerPack(pack)`** merges `listeningTests`, `listeningClips`, `readingTests`, `dictation`, `vocabWords`
+  (→ `IELTS.data.vocab.words`) into `IELTS.data`; an item whose ID (test, section, passage, clip, dictation, word) is already
+  known is skipped with `console.warn`. State: `IELTS.packs = { loaded:[{id, version, title, source, counts}],
+  skipped:[...], failed:[...], assets:{<file>: {url, pack}}, ready }`.
+- **`IELTS.resolveAudio(ref)`** → `{ local, remote }`: `"asset:<file>"` → `{ local: "content-packs/audio/<file>",
+  remote: <asset url> }`; a plain URL → `{ local: url, remote: null }`; empty → `null`.
+- **`listeningClips` schema** (real-audio practice, not full tests):
+  `{ id, title, source, sourceUrl?, level: "medium"|"hard" (easy tolerated), topic (§6.6), duration: "m:ss",
+  audio: "asset:<file>", context (English), transcript: [{ speaker, text, q:[n] }], groups: [§6.3 groups numbered from 1,
+  6–10 questions, Vietnamese explain] }`. Every question needs a transcript line tagged with it.
+- **UI:** Listening tab **"Audio thật"** (`#/listening?tab=clips`, `start=<clipId>`) lists clips (title, source, level,
+  topic, duration, best result); the clip runs in the normal listening exam shell (exam or practice mode, transcript only
+  after submit). A submission is recorded as `{ skill:"listening", kind:"section", refId:<clipId>, detail.source:"clip" }`
+  — accuracy only, band `null`; wrong answers can go to Sổ lỗi as usual. Empty state explains the daily sync /
+  `scripts/cap-nhat-ngay.cmd`. Settings → Cập nhật shows content version, packs loaded and last `syncedAt`
+  (or "Chưa tải gói bài nào").
+- **Ownership:** content packs and `content/manifest.json` — content authors (never hand-edit the manifest);
+  `js/packs.js`, `scripts/sync-content.ps1`, `scripts/build-content-manifest.mjs`, `scripts/content-pack-lib.mjs` —
+  content-channel infrastructure. IDs are progress keys: never rename a published ID.

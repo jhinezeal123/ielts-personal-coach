@@ -356,6 +356,11 @@
     if (!I.state.profile.onboarded) setTimeout(I.showOnboarding, 380);
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
+  function start() {
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+    else boot();
+  }
+  /* content packs (js/packs.js) are injected asynchronously — boot once they have all loaded or errored */
+  if (typeof I.whenPacksReady === "function") I.whenPacksReady(start);
+  else start();
 })();

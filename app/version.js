@@ -10,7 +10,7 @@
  */
 (function () {
   "use strict";
-  window.IELTS_VERSION = "1.0.0";
+  window.IELTS_VERSION = "1.1.0";
 
   try {
     if (window.IELTS_UPDATE_STATUS) return;

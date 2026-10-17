@@ -1,0 +1,3 @@
+# Content channel: pack/manifest bytes must match what raw.githubusercontent.com serves (sha256 in manifest.json)
+content/**/*.js text eol=lf
+content/**/*.json text eol=lf

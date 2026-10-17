@@ -70,12 +70,27 @@
       (s.latestVersion ? " · bản mới nhất v" + esc(String(s.latestVersion).replace(/^v/i, "")) : "") + "</span></div>" +
       (s.message ? '<p class="tiny muted">' + esc(s.message) + "</p>" : "");
   }
+  /* Content channel (SPEC §11): app/content-packs/index.js written by scripts/sync-content.ps1 */
+  function contentHTML() {
+    var idx = window.IELTS_CONTENT_INDEX;
+    var loaded = safe(function () { return I.packs.loaded.length; }, 0);
+    if (!idx || typeof idx !== "object" || !Array.isArray(idx.packs) || !idx.packs.length) {
+      return '<div class="st-info small">' + ic("layers", 15) + "<span>Bài học bổ sung: <b>Chưa tải gói bài nào</b>" +
+        (idx && idx.syncedAt ? " · đồng bộ lần cuối " + esc(fmtVN(idx.syncedAt)) : "") + "</span></div>";
+    }
+    var skipped = safe(function () { return I.packs.skipped.length; }, 0);
+    return '<div class="st-info small">' + ic("layers", 15) + "<span>Bài học bổ sung: nội dung phiên bản <b>" + esc(String(idx.contentVersion == null ? "?" : idx.contentVersion)) +
+      "</b> · <b>" + loaded + "</b>/" + idx.packs.length + " gói đã nạp" +
+      (skipped ? " (" + skipped + " gói cần bản app mới hơn)" : "") +
+      " · đồng bộ lần cuối <b>" + esc(fmtVN(idx.syncedAt) || "—") + "</b></span></div>";
+  }
   function updateHTML() {
     var ver = safe(function () { return I.update.current(); }, window.IELTS_VERSION || "?");
     return '<section class="card st-card st-update">' +
       '<div class="card-title">' + ic("refresh-cw", 18) + " Cập nhật</div>" +
       '<p class="small">Phiên bản hiện tại: <b>v' + esc(ver) + "</b></p>" +
       '<div class="st-upd-auto">' + updAutoHTML() + "</div>" +
+      '<div class="st-upd-content">' + contentHTML() + "</div>" +
       '<div class="row wrap"><button class="btn sm" data-act="update-check">' + ic("refresh-cw", 14) + " Kiểm tra bản mới</button></div>" +
       '<div class="st-upd-result small" aria-live="polite"></div>' +
       '<p class="tiny muted">Bật tự động cập nhật hằng ngày: bấm đúp một lần vào tệp <b>scripts/cai-dat-tu-dong-cap-nhat.cmd</b> trong thư mục app. Máy sẽ tự kiểm tra GitHub mỗi ngày lúc 07:00 và khi đăng nhập Windows, rồi tải bản mới về. Sau khi có bản mới, hãy tải lại trang (F5). Muốn tắt: bấm đúp <b>scripts/go-tu-dong-cap-nhat.cmd</b>.</p>' +

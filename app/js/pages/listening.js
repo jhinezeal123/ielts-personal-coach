@@ -1,5 +1,5 @@
 /* IELTS Coach — js/pages/listening.js (builder B)
- * Tabs: Section lẻ | Full đề | Dictation | Phân tích dạng bài
+ * Tabs: Section lẻ | Full đề | Audio thật (content-pack clips) | Dictation | Phân tích dạng bài
  * Real-exam listening (TTS or <audio>), results + transcript evidence + error log, dictation trainer.
  */
 (function () {
@@ -35,6 +35,33 @@
   function findSection(id) { return allSections().filter(function (x) { return x.section.id === id; })[0] || null; }
   function findTest(id) { return tests().filter(function (t) { return t.id === id; })[0] || null; }
   function lessons() { return (I.data && I.data.dictation) || []; }
+  /* real-audio clips from content packs (SPEC §11) */
+  function clips() { return (I.data && Array.isArray(I.data.listeningClips)) ? I.data.listeningClips : []; }
+  function findClip(id) { return clips().filter(function (c) { return c && c.id === id; })[0] || null; }
+  /* a clip as a pseudo-section so the exam player/results reuse the section flow; voices alternate per speaker for the TTS fallback */
+  function clipSection(c) {
+    var voices = ["f", "m", "f2", "m2"], bySpeaker = {}, k = 0;
+    var script = toArr(c.transcript).map(function (l) {
+      var sp = String((l && l.speaker) || "");
+      if (!bySpeaker[sp]) bySpeaker[sp] = l && l.voice ? l.voice : voices[k++ % voices.length];
+      return { speaker: sp, voice: bySpeaker[sp], text: (l && l.text) || "", q: l && l.q };
+    });
+    return { id: c.id, part: "", isClip: true, title: c.title || c.id, context: c.context || "", audio: c.audio || null, script: script, groups: toArr(c.groups) };
+  }
+  function secLabel(s) { return s && s.isClip ? "Audio" : "Part " + (s ? s.part : ""); }
+  function tabOf(kind) { return kind === "full" ? "full" : kind === "clip" ? "clips" : "section"; }
+  /* "6:12" -> whole minutes (rounded up) */
+  function durMins(d) {
+    var m = /^(\d+):(\d{1,2})$/.exec(String(d || "").trim());
+    return m ? Math.max(1, Math.ceil((+m[1] * 60 + +m[2]) / 60)) : null;
+  }
+  /* audio URL candidates for a section: local copy first, then the remote asset URL (content channel) */
+  function audioSrcs(ref) {
+    var r = null;
+    try { r = typeof I.resolveAudio === "function" ? I.resolveAudio(ref) : null; } catch (e) { r = null; }
+    if (!r) return ref ? [String(ref)] : [];
+    return [r.local, r.remote].filter(function (u, i, a) { return u && a.indexOf(u) === i; });
+  }
   function findLesson(id) { return lessons().filter(function (l) { return l.id === id; })[0] || null; }
   function qNums(sec) { var a = []; toArr(sec.groups).forEach(function (g) { X().groupNumbers(g).forEach(function (n) { a.push(n); }); }); return a.sort(function (x, y) { return x - y; }); }
   function words(s) { return String(s || "").split(/\s+/).filter(Boolean).length; }
@@ -67,15 +94,16 @@
   var TABS = [
     { k: "section", label: "Section lẻ", icon: "list" },
     { k: "full", label: "Full đề", icon: "headphones" },
+    { k: "clips", label: "Audio thật", icon: "volume" },
     { k: "dictation", label: "Dictation", icon: "edit" },
     { k: "analysis", label: "Phân tích dạng bài", icon: "bar-chart" }
   ];
   function landingHtml(p) {
     var tab = TABS.some(function (t) { return t.k === p.tab; }) ? p.tab : "section";
-    var body = tab === "section" ? sectionTab(p) : tab === "full" ? fullTab() : tab === "dictation" ? dictTab() : X().ui.analysisHtml("listening");
+    var body = tab === "section" ? sectionTab(p) : tab === "full" ? fullTab() : tab === "clips" ? clipsTab() : tab === "dictation" ? dictTab() : X().ui.analysisHtml("listening");
     var nSec = allSections().length;
     return '<div class="page-head"><div><div class="page-kicker">Luyện tập · Listening</div><h1 class="page-title">Listening</h1>' +
-      '<p class="page-sub">Giao diện thi trên máy như CD-IELTS · audio đọc bằng giọng máy (Web Speech)</p></div>' +
+      '<p class="page-sub">Giao diện thi trên máy như CD-IELTS · audio đọc bằng giọng máy (Web Speech)' + (clips().length ? " · " + clips().length + " bài audio thật" : "") + "</p></div>" +
       '<div class="page-actions"><span class="pill sk">' + tests().length + " đề · " + nSec + " section</span>" +
       '<span class="pill muted">' + lessons().length + " bài dictation</span></div></div>" +
       '<div class="tabs pr-tabs" role="tablist">' + TABS.map(function (t) {
@@ -142,6 +170,31 @@
         "</article>";
     }).join("") + "</div>";
   }
+  function clipsTab() {
+    var cs = clips();
+    if (!cs.length) {
+      return emptyCard("📻", "Chưa có bài nghe audio thật",
+        "Bài nghe audio thật (podcast, bản tin… kèm câu hỏi) được tải về máy mỗi ngày cùng lúc với tự động cập nhật. " +
+        "Muốn tải ngay: bấm đúp tệp <b>scripts/cap-nhat-ngay.cmd</b> trong thư mục app, đợi chạy xong rồi tải lại trang (F5). " +
+        "Nếu chưa bật tự động cập nhật, hãy bấm đúp <b>scripts/cai-dat-tu-dong-cap-nhat.cmd</b> một lần.");
+    }
+    var lvLabel = { easy: "Dễ", medium: "Trung bình", hard: "Khó" };
+    return '<p class="small muted pr-dict-intro">Luyện nghe bằng audio thật (giọng người bản xứ, tốc độ tự nhiên). Chế độ luyện cho phép tạm dừng, tua và chỉnh tốc độ 0.75×–1.25×. Kết quả tính như một section lẻ (chỉ accuracy, không quy ra band).</p>' +
+      '<div class="grid g-auto pr-cards">' + cs.map(function (c) {
+        var h = X().ui.historyFor("listening", c.id, ["section"]);
+        var n = qNums(clipSection(c)).length;
+        return '<article class="card clickable pr-card sk-listening" tabindex="0" data-la="open-clip" data-id="' + esc(c.id) + '">' +
+          '<div class="pr-card-top">' + (c.level ? '<span class="pill sk">' + esc(lvLabel[c.level] || c.level) + "</span>" : "") +
+          (c.topic ? '<span class="pill muted">' + esc(X().ui.topicName(c.topic)) + "</span>" : "") + draftBadge("exam:" + c.id) + "</div>" +
+          '<h3 class="pr-card-title">' + esc(c.title || c.id) + "</h3>" +
+          (c.source ? '<p class="tiny muted pr-ctx">' + esc(c.source) + "</p>" : "") +
+          (c.context ? '<p class="small muted pr-ctx">' + esc(c.context) + "</p>" : "") +
+          '<div class="pr-types">' + X().ui.typePills(c.groups, "listening") + "</div>" +
+          '<div class="pr-card-foot"><span>' + ic("clock", 14) + " " + (c.duration ? esc(c.duration) + " · " : "") + n + " câu</span><span>" + bestLine(h, false) + "</span></div>" +
+          (h.last && h.last.detail && Array.isArray(h.last.detail.results) ? '<button type="button" class="pr-link" data-la="last" data-id="' + esc(c.id) + '">Xem kết quả gần nhất →</button>' : "") +
+          "</article>";
+      }).join("") + "</div>";
+  }
   var LEVELS = [{ k: "easy", label: "Dễ", emoji: "🌱" }, { k: "medium", label: "Trung bình", emoji: "🌿" }, { k: "hard", label: "Khó", emoji: "🌳" }];
   function dprog(id) {
     if (!I.state) return { index: 0, done: false, best: 0 };
@@ -181,6 +234,10 @@
    * Pre-start
    * ====================================================================== */
   function refInfo(kind, id) {
+    if (kind === "clip") {
+      var c = findClip(id); if (!c) return null;
+      return { kind: kind, id: id, clip: c, test: { id: c.id, title: c.title || c.id, source: c.source || "" }, secs: [clipSection(c)], title: c.title || c.id, sub: c.source || "" };
+    }
     if (kind === "section") {
       var x = findSection(id); if (!x) return null;
       return { kind: kind, id: id, test: x.test, secs: [x.section], title: x.test.title + " — Part " + x.section.part, sub: x.section.title || "" };
@@ -191,28 +248,30 @@
   function openPrestart(kind, id) {
     cleanupView();
     var ref = refInfo(kind, id);
-    if (!ref) { toast("Không tìm thấy bài " + id, "warn"); showLanding({ tab: kind === "full" ? "full" : "section" }); return; }
+    if (!ref) { toast("Không tìm thấy bài " + id, "warn"); showLanding({ tab: tabOf(kind) }); return; }
     var key = "exam:" + id, draft = X().loadDraft(key), tok = V.token;
     var nq = 0, groups = [];
     ref.secs.forEach(function (s) { nq += qNums(s).length; toArr(s.groups).forEach(function (g) { groups.push(g); }); });
-    var mins = estMins(ref.secs, kind === "full");
+    var mins = (kind === "clip" && durMins(ref.clip.duration)) ? durMins(ref.clip.duration) + 1 : estMins(ref.secs, kind === "full");
     var hasAudio = ref.secs.every(function (s) { return !!s.audio; });
     V.host.innerHTML =
       '<div class="pr-pre">' +
-      '<button type="button" class="btn ghost sm" data-la="back" data-tab="' + (kind === "full" ? "full" : "section") + '">' + ic("chevron-left", 16) + " Danh sách</button>" +
+      '<button type="button" class="btn ghost sm" data-la="back" data-tab="' + tabOf(kind) + '">' + ic("chevron-left", 16) + " Danh sách</button>" +
       '<div class="card tape pad-lg pr-pre-card sk-listening">' +
-      '<div class="page-kicker">' + (kind === "full" ? "Full đề · 4 Part" : "Section lẻ") + "</div>" +
+      '<div class="page-kicker">' + (kind === "full" ? "Full đề · 4 Part" : kind === "clip" ? "Audio thật" + (ref.clip.duration ? " · " + esc(ref.clip.duration) : "") : "Section lẻ") + "</div>" +
       '<h2 class="pr-pre-title">' + esc(ref.title) + "</h2>" +
       (ref.sub ? '<p class="muted">' + esc(ref.sub) + "</p>" : "") +
-      (kind === "section" && ref.secs[0].context ? '<p class="small">' + esc(ref.secs[0].context) + "</p>" : "") +
+      (kind !== "full" && ref.secs[0].context ? '<p class="small">' + esc(ref.secs[0].context) + "</p>" : "") +
+      (kind === "clip" && /^https?:\/\//i.test(String(ref.clip.sourceUrl || "")) ? '<p class="tiny"><a href="' + esc(ref.clip.sourceUrl) + '" target="_blank" rel="noopener">Nguồn bài nghe ' + ic("external-link", 12) + "</a></p>" : "") +
       '<div class="pr-pre-facts"><span>' + ic("list", 15) + " " + nq + " câu</span><span>" + ic("clock", 15) + " ~" + mins + " phút</span><span>" + ic("headphones", 15) + " " + (hasAudio ? "File audio" : "Giọng đọc máy") + "</span></div>" +
       '<div class="pr-types">' + X().ui.typePills(groups, "listening") + "</div>" +
-      (kind === "section" ? '<div class="pr-mode"><div class="field-label">Chế độ</div><div class="seg" role="group">' +
+      (kind !== "full" ? '<div class="pr-mode"><div class="field-label">Chế độ</div><div class="seg" role="group">' +
         '<button type="button" class="active" data-la="mode" data-mode="exam">' + ic("target", 15) + " Chế độ thi</button>" +
         '<button type="button" data-la="mode" data-mode="practice">' + ic("rotate-ccw", 15) + " Chế độ luyện</button></div>" +
         '<p class="tiny muted" data-role="mode-note">Audio phát một lần, không tạm dừng/tua lại — giống thi thật.</p></div>' : "") +
       '<ul class="pr-rules">' +
-      "<li>30 giây đọc câu hỏi trước mỗi Part (có nút “Bắt đầu nghe ngay”).</li>" +
+      "<li>30 giây đọc câu hỏi trước " + (kind === "clip" ? "khi phát audio" : "mỗi Part") + " (có nút “Bắt đầu nghe ngay”).</li>" +
+      (kind === "clip" ? "<li>Chế độ luyện: được tạm dừng, tua và chỉnh tốc độ 0.75×–1.25×. Nếu không phát được file audio, app chuyển sang giọng đọc máy.</li>" : "") +
       (kind === "full" ? "<li>Audio phát một lần cho cả 4 Part, không tua lại. Sau Part 4 có 2 phút kiểm tra rồi tự nộp bài.</li>" : "<li>Chế độ thi: sau khi audio kết thúc có 1 phút kiểm tra rồi tự nộp bài.</li>") +
       "<li>Transcript chỉ hiện sau khi nộp bài. Bài làm được lưu nháp — tải lại trang không mất đáp án.</li></ul>" +
       '<div class="pr-tts" data-role="tts"><span class="pr-spin"></span> Đang kiểm tra giọng đọc tiếng Anh…</div>' +
@@ -250,7 +309,7 @@
    * Exam
    * ====================================================================== */
   function transcriptPane(s) {
-    return '<h2 class="ex-ptitle">Transcript — Part ' + esc(s.part) + "</h2>" + (s.context ? '<p class="ex-pctx">' + esc(s.context) + "</p>" : "") +
+    return '<h2 class="ex-ptitle">Transcript — ' + esc(secLabel(s)) + "</h2>" + (s.context ? '<p class="ex-pctx">' + esc(s.context) + "</p>" : "") +
       toArr(s.script).map(function (l) { return '<p class="ex-tline"><b>' + esc(l.speaker || "") + ":</b> " + esc(l.text) + "</p>"; }).join("");
   }
   function startExam(kind, id, opt) {
@@ -266,14 +325,17 @@
     var secs = ref.secs;
     var parts = secs.map(function (s) {
       var ns = qNums(s);
-      return { id: s.id, title: s.title || "", label: "Part " + s.part, groups: toArr(s.groups),
+      return { id: s.id, title: s.title || "", label: secLabel(s), groups: toArr(s.groups),
         sub: transcript ? "Đọc transcript và trả lời câu hỏi " + ns[0] + "–" + ns[ns.length - 1] + "." : "Listen and answer questions " + (ns[0] || "") + "–" + (ns[ns.length - 1] || "") + ".",
         passageHtml: transcript ? transcriptPane(s) : null };
     });
     var title = ref.title + (practice ? " · luyện" : "") + (transcript ? " · transcript" : "");
     var pStart = api("beginPractice", "listening");
     api("enterExamMode");
-    var run = { token: 0, stopped: false, paused: false, audio: null, volume: meta.volume != null ? +meta.volume : 1, onDone: null, sec: null };
+    var run = { token: 0, stopped: false, paused: false, audio: null, volume: meta.volume != null ? +meta.volume : 1, onDone: null, sec: null,
+      broken: {}, srcIdx: {}, speed: practice && meta.speed ? +meta.speed : 1 };
+    /* true while this section is being played from a real audio file (not the TTS fallback) */
+    function realAudio(sec) { return !!(sec && sec.audio && !run.broken[sec.id] && audioSrcs(sec.audio).length); }
     var ctl;
     var leaveGuard = function () {
       if (!ctl || ctl.isSubmitted()) return true;
@@ -326,22 +388,33 @@
       run.stopped = false; run.paused = false; run.sec = sec; run.onDone = onDone;
       setTimeout(function () {
         if (token !== run.token || run.stopped) return;
-        if (sec.audio && !run.audioBroken) {
-          var a = run.audio && run.audio.getAttribute("data-src") === sec.audio ? run.audio : new Audio(sec.audio);
-          a.setAttribute("data-src", sec.audio);
+        if (realAudio(sec)) {
+          var srcs = audioSrcs(sec.audio), si = Math.min(run.srcIdx[sec.id] || 0, srcs.length - 1), src = srcs[si];
+          var a = run.audio && run.audio.getAttribute("data-src") === src ? run.audio : new Audio(src);
+          if (a !== run.audio && run.audio) { try { run.audio.pause(); run.audio.onerror = null; } catch (e) { /* ignore */ } }
+          a.setAttribute("data-src", src);
+          a.preload = "auto";
           run.audio = a;
           a.volume = run.volume;
+          a.playbackRate = practice ? run.speed : 1;
           a.onended = function () { if (token === run.token) { meta.audioTime = 0; onDone(); } };
-          a.ontimeupdate = function () { if (token === run.token) { meta.audioTime = a.currentTime; ctl.touch(); } };
+          a.ontimeupdate = function () { if (token === run.token) { meta.audioTime = a.currentTime; seekUi(); ctl.touch(); } };
+          a.onloadedmetadata = function () { if (token === run.token) seekUi(); };
           a.onerror = function () {
             if (token !== run.token) return;
-            run.audioBroken = true;
-            if (toArr(sec.script).length) play(sec, 0, onDone); else audioError(function () { run.audioBroken = false; play(sec, 0, onDone); });
+            try { a.pause(); } catch (e) { /* ignore */ }
+            if (si + 1 < srcs.length) { run.srcIdx[sec.id] = si + 1; run.audio = null; play(sec, from, onDone); return; } // local copy missing → remote URL
+            run.broken[sec.id] = true; run.audio = null;
+            meta.audioTime = 0;
+            if (toArr(sec.script).length) { toast("Không phát được file audio — chuyển sang giọng đọc máy.", "warn"); audioUi("play", phases[meta.phase]); play(sec, 0, onDone); }
+            else audioError(function () { run.broken[sec.id] = false; run.srcIdx[sec.id] = 0; play(sec, 0, onDone); });
           };
-          var startAt = function () { try { if (meta.audioTime) a.currentTime = meta.audioTime; } catch (e) { /* ignore */ } };
+          /* also seeks back to 0 on "replay"/"back" when the element is reused (it would otherwise keep its position) */
+          var startAt = function () { try { var t = +meta.audioTime || 0; if (Math.abs((a.currentTime || 0) - t) > 0.25) a.currentTime = t; } catch (e) { /* ignore */ } };
           if (a.readyState >= 1) startAt(); else a.addEventListener("loadedmetadata", startAt, { once: true });
           var pr = a.play();
-          if (pr && pr.catch) pr.catch(function () { if (token === run.token) audioError(function () { play(sec, from, onDone); }); });
+          /* a missing file rejects play() too — that case is handled by onerror; only autoplay blocks need a manual retry */
+          if (pr && pr.catch) pr.catch(function (err) { if (token === run.token && err && err.name === "NotAllowedError") audioError(function () { play(sec, from, onDone); }); });
           return;
         }
         var lines = toArr(sec.script).slice(from || 0);
@@ -360,19 +433,38 @@
     function volHtml() {
       return '<label class="ex-vol" title="Âm lượng">' + ic("volume", 16) + '<input type="range" min="0" max="1" step="0.1" value="' + run.volume + '" data-au="vol" aria-label="Âm lượng"></label>';
     }
+    function mmss(t) { t = Math.max(0, Math.floor(+t || 0)); return Math.floor(t / 60) + ":" + (t % 60 < 10 ? "0" : "") + (t % 60); }
+    /* keeps the seek bar/time label in sync without re-rendering the whole audio bar */
+    function seekUi() {
+      var a = run.audio, box = ctl.el.querySelector("[data-role=audio]");
+      if (!a || !box) return;
+      var r = box.querySelector("[data-au=seek]"), t = box.querySelector("[data-au-time]");
+      var dur = isFinite(a.duration) ? a.duration : 0;
+      if (r && document.activeElement !== r) { r.max = String(Math.max(1, Math.floor(dur))); r.value = String(Math.floor(a.currentTime || 0)); }
+      if (t) t.textContent = mmss(a.currentTime) + (dur ? " / " + mmss(dur) : "");
+    }
+    function realControls() {
+      var a = run.audio, dur = a && isFinite(a.duration) ? a.duration : 0, cur = a ? a.currentTime || 0 : 0;
+      return '<input type="range" class="ex-seek" min="0" max="' + Math.max(1, Math.floor(dur)) + '" step="1" value="' + Math.floor(cur) + '" data-au="seek" aria-label="Tua audio" style="width:120px">' +
+        '<span class="tiny mono" data-au-time>' + mmss(cur) + (dur ? " / " + mmss(dur) : "") + "</span>" +
+        [0.75, 1, 1.25].map(function (v) {
+          return '<button type="button" class="ex-tbtn' + (run.speed === v ? " ex-tbtn-hi" : "") + '" data-au="speed" data-v="' + v + '" title="Tốc độ ' + v + '×" aria-pressed="' + (run.speed === v) + '">' + v + "×</button>";
+        }).join("");
+    }
     function audioUi(state, ph) {
       var s = "";
       if (state === "read") {
-        s = '<span class="ex-au-state">' + ic("headphones", 15) + " Sắp phát Part " + esc(secs[ph.p].part) + "</span>" +
+        s = '<span class="ex-au-state">' + ic("headphones", 15) + " Sắp phát " + esc(secLabel(secs[ph.p])) + "</span>" +
           '<button type="button" class="ex-tbtn ex-tbtn-hi" data-au="skip">' + ic("play", 14) + " Bắt đầu nghe ngay</button>";
       } else if (state === "play") {
         s = '<span class="ex-au-state is-live"><span class="ex-eq"><i></i><i></i><i></i></span> ' + (run.paused ? "Tạm dừng" : "Đang phát") + "</span>" +
           (practice ? '<button type="button" class="ex-tbtn" data-au="back" title="Lùi một câu">' + ic("chevron-left", 14) + '</button>' +
             '<button type="button" class="ex-tbtn" data-au="pause">' + (run.paused ? ic("play", 14) + " Tiếp" : ic("pause", 14) + " Dừng") + "</button>" +
-            '<button type="button" class="ex-tbtn" data-au="replay" title="Nghe lại Part này từ đầu">' + ic("rotate-ccw", 14) + "</button>" : "");
+            '<button type="button" class="ex-tbtn" data-au="replay" title="Nghe lại Part này từ đầu">' + ic("rotate-ccw", 14) + "</button>" +
+            (realAudio(run.sec) ? realControls() : "") : "");
       } else {
         s = '<span class="ex-au-state">' + ic("check", 15) + " Đã phát xong</span>" +
-          (practice ? '<button type="button" class="ex-tbtn" data-au="replay-view">' + ic("rotate-ccw", 14) + " Nghe lại Part đang xem</button>" : "");
+          (practice ? '<button type="button" class="ex-tbtn" data-au="replay-view">' + ic("rotate-ccw", 14) + (kind === "clip" ? " Nghe lại audio" : " Nghe lại Part đang xem") + "</button>" : "");
       }
       ctl.setAudio(s + volHtml());
     }
@@ -384,22 +476,36 @@
       else if (a === "retry" && run.retry) { var f = run.retry; run.retry = null; audioUi("play", ph); f(); }
       else if (a === "pause" && practice) {
         run.paused = !run.paused;
-        if (run.audio && run.sec && run.sec.audio && !run.audioBroken) { if (run.paused) run.audio.pause(); else run.audio.play(); }
+        if (run.audio && realAudio(run.sec)) { if (run.paused) run.audio.pause(); else { var rp = run.audio.play(); if (rp && rp.catch) rp.catch(function () { /* onerror handles it */ }); } }
         else if (run.paused) I.tts.pause(); else I.tts.resume();
         audioUi("play", ph);
       } else if (a === "back" && practice && run.sec) {
-        if (run.audio && run.sec.audio && !run.audioBroken) { meta.audioTime = Math.max(0, (run.audio.currentTime || 0) - 8); play(run.sec, 0, run.onDone); }
+        if (run.audio && realAudio(run.sec)) { meta.audioTime = Math.max(0, (run.audio.currentTime || 0) - 8); play(run.sec, 0, run.onDone); }
         else play(run.sec, Math.max(0, (meta.line || 0) - 1), run.onDone);
         audioUi("play", ph);
       } else if (a === "replay" && practice && run.sec) { meta.line = 0; meta.audioTime = 0; play(run.sec, 0, run.onDone); audioUi("play", ph); }
+      else if (a === "speed" && practice) {
+        run.speed = Math.min(1.25, Math.max(0.75, +b.getAttribute("data-v") || 1));
+        meta.speed = run.speed;
+        if (run.audio) { try { run.audio.playbackRate = run.speed; } catch (er) { /* ignore */ } }
+        ctl.touch();
+        audioUi("play", ph);
+      }
       else if (a === "replay-view" && practice) {
         var sec = secs[ctl.state.part];
         meta.line = 0; meta.audioTime = 0;
+        run.sec = sec;
         audioUi("play", ph);
         play(sec, 0, function () { audioUi("done"); });
       }
     });
     ctl.el.addEventListener("input", function (e) {
+      if (e.target.matches && e.target.matches("[data-au=seek]")) {
+        if (!practice || !run.audio || !realAudio(run.sec)) return;
+        try { run.audio.currentTime = +e.target.value || 0; meta.audioTime = run.audio.currentTime; } catch (er) { /* ignore */ }
+        seekUi(); ctl.touch();
+        return;
+      }
       if (!e.target.matches || !e.target.matches("[data-au=vol]")) return;
       run.volume = +e.target.value; meta.volume = run.volume;
       if (run.audio) run.audio.volume = run.volume;
@@ -414,10 +520,11 @@
         if (!remaining) { meta.line = 0; meta.audioTime = 0; }
         ctl.setPart(ph.p);
         audioUi("read", ph);
-        ctl.startCountdown(remaining || ph.secs, function () { runPhase(meta.phase + 1); }, { label: "Đọc câu hỏi Part " + secs[ph.p].part });
+        ctl.startCountdown(remaining || ph.secs, function () { runPhase(meta.phase + 1); }, { label: "Đọc câu hỏi " + secLabel(secs[ph.p]) });
       } else if (ph.t === "play") {
-        ctl.setClock('<span class="ex-live-dot"></span><span class="ex-clock-l">Đang phát</span><b class="ex-clock-t">Part ' + esc(secs[ph.p].part) + "</b>", "is-live");
+        ctl.setClock('<span class="ex-live-dot"></span><span class="ex-clock-l">Đang phát</span><b class="ex-clock-t">' + esc(secLabel(secs[ph.p])) + "</b>", "is-live");
         if (ctl.state.part !== ph.p && !remaining) ctl.setPart(ph.p);
+        run.sec = secs[ph.p];
         audioUi("play", ph);
         play(secs[ph.p], meta.line || 0, function () { runPhase(meta.phase + 1); });
       } else if (ph.t === "check") {
@@ -449,6 +556,7 @@
         score: { raw: res.raw, total: res.total, accuracy: res.accuracy, band: band, bandSource: band != null ? "full-test table" : null, criteria: null, status: "graded" },
         detail: { answers: res.answers, results: res.results }
       };
+      if (kind === "clip") sub.detail.source = "clip";
       if (practice) sub.detail.notes = "Chế độ luyện (được tạm dừng / nghe lại)";
       if (transcript) { delete sub.detail.results; sub.detail.notes = "Chế độ đọc transcript — không tính vào thống kê dạng bài"; }
       var stored = api("recordSubmission", sub) || sub;
@@ -486,8 +594,8 @@
       }).join("") + "</tbody></table></div></div>" : "";
     V.host.innerHTML =
       '<div class="pr-results sk-listening">' +
-      '<div class="row between wrap pr-res-head"><div class="row wrap"><button type="button" class="btn ghost sm" data-la="back" data-tab="' + (full ? "full" : "section") + '">' + ic("chevron-left", 16) + " Danh sách</button>" +
-      '<div><div class="page-kicker">Kết quả · ' + (full ? "Full đề" : "Section lẻ") + (ctx.practice ? " · chế độ luyện" : "") + (ctx.transcript ? " · transcript" : "") + '</div><h2 class="pr-res-title">' + esc(ref.title) + "</h2></div></div>" +
+      '<div class="row between wrap pr-res-head"><div class="row wrap"><button type="button" class="btn ghost sm" data-la="back" data-tab="' + tabOf(ref.kind) + '">' + ic("chevron-left", 16) + " Danh sách</button>" +
+      '<div><div class="page-kicker">Kết quả · ' + (full ? "Full đề" : ref.kind === "clip" ? "Audio thật" : "Section lẻ") + (ctx.practice ? " · chế độ luyện" : "") + (ctx.transcript ? " · transcript" : "") + '</div><h2 class="pr-res-title">' + esc(ref.title) + "</h2></div></div>" +
       '<div class="row wrap"><button type="button" class="btn sk" data-la="redo">' + ic("rotate-ccw", 16) + " Làm lại</button></div></div>" +
       (stored.repeat ? '<div class="pr-note">' + ic("rotate-ccw", 15) + " <b>Làm lại</b> — bạn đã làm bài này trước đó nên lần này không tính thêm vào thống kê dạng bài.</div>" : "") +
       (ctx.transcript ? '<div class="pr-note">' + ic("book-open", 15) + " Bài làm ở chế độ đọc transcript — không tính vào thống kê dạng bài Listening.</div>" : "") +
@@ -497,18 +605,18 @@
       '<div class="pr-review-grid"><div class="pr-review-col">' +
       ref.secs.map(function (s) {
         var ns = qNums(s), rs = results.filter(function (r) { return ns.indexOf(r.n) >= 0; });
-        return '<h3 class="section-title">Part ' + esc(s.part) + " — " + esc(s.title || "") + "</h3>" +
+        return '<h3 class="section-title">' + esc(secLabel(s)) + " — " + esc(s.title || "") + "</h3>" +
           X().renderReview(s.groups, rs, { skill: "listening", evidence: evidence, allowLog: !ctx.fromHistory || true });
       }).join("") + "</div>" +
       '<aside class="pr-transcript-col"><div class="card pr-transcript"><div class="card-title">' + ic("book-open", 16) + ' Transcript</div><p class="tiny muted">Dòng đỏ: chứa đáp án câu bạn làm sai · bấm “Xem trong transcript” để tô vàng bằng chứng.</p>' +
-      ref.secs.map(function (s) { return '<h4 class="pr-tr-part">Part ' + esc(s.part) + "</h4>" + transcriptHtml(s, wrong); }).join("") + "</div></aside></div></div>";
+      ref.secs.map(function (s) { return '<h4 class="pr-tr-part">' + esc(secLabel(s)) + "</h4>" + transcriptHtml(s, wrong); }).join("") + "</div></aside></div></div>";
     V.result = { ref: ref, res: res, stored: stored };
     try { window.scrollTo(0, 0); } catch (e) { /* ignore */ }
   }
   function openStoredResult(refId) {
-    var kind = findTest(refId) ? "full" : "section";
+    var kind = findTest(refId) ? "full" : findSection(refId) ? "section" : findClip(refId) ? "clip" : "section";
     var ref = refInfo(kind, refId);
-    var h = X().ui.historyFor("listening", refId, [kind]);
+    var h = X().ui.historyFor("listening", refId, [kind === "full" ? "full" : "section"]);
     var s = h.list.filter(function (x) { return x.detail && Array.isArray(x.detail.results); })[0];
     if (!ref || !s) { toast("Chưa có kết quả để xem lại.", "info"); return; }
     var sc = s.score || {};
@@ -784,10 +892,12 @@
     if (p.start) {
       var id = p.start;
       if (p.tab === "dictation" && findLesson(id)) return openLesson(id);
+      if (p.tab === "clips" && findClip(id)) return openPrestart("clip", id);
       if (p.tab !== "full" && findSection(id)) return openPrestart("section", id);
       if (findTest(id)) return openPrestart("full", id);
       if (findSection(id)) return openPrestart("section", id);
       if (findLesson(id)) return openLesson(id);
+      if (findClip(id)) return openPrestart("clip", id);
       toast("Không tìm thấy bài “" + id + "”.", "warn");
     }
     if (!V.host.querySelector(".pr-tabs")) showLanding(p);
@@ -804,6 +914,7 @@
       case "practice-type": go({ tab: "section", type: b.getAttribute("data-type") }); break;
       case "open-section": go({ tab: "section", start: id }); break;
       case "open-full": go({ tab: "full", start: id }); break;
+      case "open-clip": go({ tab: "clips", start: id }); break;
       case "open-dict":
         if (V.params.start === id && V.params.tab === "dictation") openLesson(id); else go({ tab: "dictation", start: id });
         break;

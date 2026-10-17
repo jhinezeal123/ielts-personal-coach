@@ -1,3 +1,5 @@
 # Auto-updater (scripts/auto-update.ps1) local output
 scripts/auto-update.log
 app/update-status.js
+# Content channel (scripts/sync-content.ps1) installed lesson packs + audio
+app/content-packs/

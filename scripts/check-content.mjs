@@ -3,6 +3,8 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
+import path from 'node:path';
+import { ROOT, loadApp, loadAndValidatePacks } from './content-pack-lib.mjs';
 
 const html = fs.readFileSync('app/index.html', 'utf8');
 const files = [...html.matchAll(/<script src="([^"]+)"/g)].map(m => m[1]);
@@ -139,5 +141,13 @@ for (const topic of data.speaking.topics.filter(t=>Number(t.id.slice(3))>=21)) {
   }
 }
 for (const lesson of data.dictation.filter(l=>Number(l.id.slice(1))>=13)) assert(lesson.sentences.length>=8 && lesson.sentences.length<=15);
+// Content channel packs (content/packs/*.js, SPEC §11): same rules as built-in data, unique IDs vs built-in + other packs.
+const packsDir = path.resolve(process.argv.includes('--packs') ? process.argv[process.argv.indexOf('--packs') + 1] : path.join(ROOT, 'content/packs'));
+const packCheck = loadAndValidatePacks(packsDir, loadApp(ROOT));
+for (const w of packCheck.warnings) console.warn('warning: ' + w);
+assert.equal(packCheck.errors.length, 0, 'Invalid content packs:\n  - ' + packCheck.errors.join('\n  - '));
+const packReport = packCheck.packs.map(({ id, pack }) => ({ pack: id, version: pack.version,
+  listeningTests: (pack.listeningTests || []).length, listeningClips: (pack.listeningClips || []).length,
+  readingTests: (pack.readingTests || []).length, dictation: (pack.dictation || []).length, vocabWords: (pack.vocabWords || []).length }));
 console.log(JSON.stringify({counts, tests:reports, checkedQuestions:reports.length*40,
-  latestAddedQuestions:reports.filter(t=>Number(t.test.slice(1))>=5).length*40,status:'passed'}, null, 2));
+  latestAddedQuestions:reports.filter(t=>Number(t.test.slice(1))>=5).length*40, contentPacks: packReport, status:'passed'}, null, 2));
