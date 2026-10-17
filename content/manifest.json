@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "contentVersion": 1,
+  "generatedAt": "2026-10-17T10:16:05Z",
+  "packs": [
+    {
+      "id": "bc-listening-01",
+      "file": "packs/bc-listening-01.js",
+      "version": 1,
+      "minAppVersion": "1.1.0",
+      "title": "Listening chính thức — 1 đề đầy đủ (IELTS USA / British Council) + 8 bài mẫu IELTS.org",
+      "sha256": "8416a27bb64da999dae2b3b4a2d146e38fc5da902bbc45f239b294504cc1d4b3",
+      "assets": [
+        {
+          "file": "bc-l1/section-1.mp3",
+          "url": "https://web.archive.org/web/20220528095737id_/https://www.ielts.org/-/media/us-files/ielts-practice-listening-test_section-1-audio.ashx"
+        },
+        {
+          "file": "bc-l1/section-2.mp3",
+          "url": "https://web.archive.org/web/20220528095736id_/https://www.ielts.org/-/media/us-files/ielts-practice-listening-test_section-2-audio.ashx"
+        },
+        {
+          "file": "bc-l1/section-3.mp3",
+          "url": "https://web.archive.org/web/20220728101627id_/https://www.ielts.org/-/media/us-files/ielts-practice-listening-test_section-3-audio.ashx"
+        },
+        {
+          "file": "bc-l1/section-4.mp3",
+          "url": "https://web.archive.org/web/20220528095736id_/https://www.ielts.org/-/media/us-files/ielts-practice-listening-test_section-4-audio.ashx"
+        },
+        {
+          "file": "ielts-samples/task-1-form-completion.mp3",
+          "url": "https://web.archive.org/web/20251224071640id_/https://ielts.org/cdn/ielts-sample-tests/ielts-listening/ielts-listening-sample-task-1-form-completion.mp3"
+        },
+        {
+          "file": "ielts-samples/task-2-multiple-choice.mp3",
+          "url": "https://web.archive.org/web/20251224072005id_/https://ielts.org/cdn/ielts-sample-tests/ielts-listening/ielts-listening-sample-task-2-multiple-choice.mp3"
+        },
+        {
+          "file": "ielts-samples/task-3-short-answer.mp3",
+          "url": "https://web.archive.org/web/20251224073353id_/https://ielts.org/cdn/ielts-sample-tests/ielts-listening/ielts-listening-sample-task-3-short-answer-questions.mp3"
+        },
+        {
+          "file": "ielts-samples/task-4-sentence-completion.mp3",
+          "url": "https://web.archive.org/web/20251224093118id_/https://ielts.org/cdn/ielts-sample-tests/ielts-listening/ielts-listening-sample-task-4-sentence-completion.mp3"
+        },
+        {
+          "file": "ielts-samples/task-5-matching-1.mp3",
+          "url": "https://web.archive.org/web/20251224070501id_/https://ielts.org/cdn/ielts-sample-tests/ielts-listening/ielts-listening-sample-task-5-matching.mp3"
+        },
+        {
+          "file": "ielts-samples/task-6-matching-2.mp3",
+          "url": "https://web.archive.org/web/20251224065614id_/https://ielts.org/cdn/ielts-sample-tests/ielts-listening/ielts-listening-sample-task-6-matching.mp3"
+        },
+        {
+          "file": "ielts-samples/task-7-plan-labelling.mp3",
+          "url": "https://web.archive.org/web/20251224073233id_/https://ielts.org/cdn/ielts-sample-tests/ielts-listening/ielts-listening-sample-task-7-plan-map-diagram-labelling.mp3"
+        },
+        {
+          "file": "ielts-samples/task-8-note-completion.mp3",
+          "url": "https://web.archive.org/web/20230629105010id_/https://www.ielts.org/about-the-test//-/media/files/ielts-sample-tasks-recording-08.ashx"
+        }
+      ]
+    }
+  ]
+}
