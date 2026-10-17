@@ -55,3 +55,12 @@ Ngân hàng hiện có **12 đề Reading (36 passage)** và **12 đề Listenin
 - **Band luôn là ước tính tham khảo.** Band Listening/Reading chỉ được quy đổi khi làm full đề 40 câu. Bài lẻ chỉ tính accuracy. Band Writing/Speaking do bạn hoặc giáo viên tự chấm.
 - **Forecast Speaking** là bộ đề luyện tập được chọn lọc, không phải dự đoán chính thức.
 - Dữ liệu chỉ nằm trong trình duyệt của máy này, không có tài khoản và không đồng bộ lên mạng. Hãy sao lưu thường xuyên.
+
+## 8. Cập nhật app
+
+- **Bật tự động cập nhật (làm một lần):** bấm đúp `scripts/cai-dat-tu-dong-cap-nhat.cmd`. Máy sẽ tự kiểm tra GitHub mỗi ngày lúc 07:00 và mỗi lần đăng nhập Windows (nếu máy tắt lúc 07:00 thì kiểm tra bù khi mở lại), rồi tự tải bản mới về. Cần cài Git for Windows.
+- Sau khi có bản mới, **tải lại trang app (F5)**. Dữ liệu học trong trình duyệt không bị ảnh hưởng.
+- Nếu thư mục app có thay đổi chưa commit, việc cập nhật sẽ bị bỏ qua để không làm mất gì (xem `scripts/auto-update.log`).
+- **Cài đặt → Cập nhật** hiện phiên bản đang dùng, lần tự kiểm tra gần nhất và nút **Kiểm tra bản mới**. Mỗi ngày app cũng tự kiểm tra một lần và báo nhẹ nếu có bản mới; khi không có mạng thì im lặng.
+- Cập nhật ngay: bấm đúp `scripts/cap-nhat-ngay.cmd`. Tắt tự động cập nhật: bấm đúp `scripts/go-tu-dong-cap-nhat.cmd`.
+- **Phát hành bản mới (người phát triển):** sửa số phiên bản trong `app/version.js`, commit, push, rồi chạy `gh release create vX.Y.Z`. Tag phải trùng với số trong `version.js` (ví dụ `1.1.0` → `v1.1.0`).

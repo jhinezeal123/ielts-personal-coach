@@ -1,0 +1,3 @@
+# Auto-updater (scripts/auto-update.ps1) local output
+scripts/auto-update.log
+app/update-status.js

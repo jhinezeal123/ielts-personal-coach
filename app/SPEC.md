@@ -6,6 +6,7 @@ in Chrome/Edge (file://). Therefore:
 - **Classic `<script>` tags only. No ES modules, no `import`, no `fetch` of local files, no build tools, no npm libs.**
 - Every JS file is wrapped in an IIFE `(function(){ "use strict"; ... })();` and attaches to the global `window.IELTS`.
 - Only external resource allowed: Google Fonts `<link>` (app must still work offline with fallbacks).
+  Exception: `js/update.js` may call the GitHub releases API (`api.github.com`, CORS-enabled); failures must be silent (see §9).
 - UI language: **Vietnamese with full diacritics**; IELTS terms stay English (Listening, Task 1, Matching Headings…).
 - Always escape user-entered text with `IELTS.esc()`. Content data files are trusted (may contain HTML).
 - No console errors. Target modern Chrome/Edge. Must be responsive down to 380px wide.
@@ -29,6 +30,7 @@ css/speaking.css    (S)
 css/vocab.css       (V)
 css/schedule.css    (SC)   Lịch học (weekly timetable) — see §10
 
+version.js                 window.IELTS_VERSION (single source of truth) + defensive loader for optional update-status.js
 js/core.js          (A1)   namespace, store, StudyClock, router, helpers, stats, plan, SRS, errors, TTS, audio DB
 data/vocab-bank.js  (V)
 data/listening-1.js (LD1)
@@ -59,6 +61,7 @@ js/pages/vocab.js     (V)
 js/pages/errors.js    (A2)
 js/pages/settings.js  (A2)
 js/pages/schedule.js  (SC)   Lịch học — see §10
+js/update.js               IELTS.update: GitHub release check (Settings → Cập nhật + one silent check per day on boot)
 js/app.js           (A1)   boot: onboarding, router start, topbar, global timer widget
 ```
 
@@ -525,6 +528,31 @@ Onboarding (A1, first run): friendly 3-step modal: name + exam date → current 
 - Keyboard: Enter submits where natural; visible focus rings.
 - Verify your JS parses: run `node --check <file>` on every JS file you create (Node is available).
 - Keep strings Vietnamese with correct diacritics.
+
+---
+
+## 9. Versioning, releases & auto-update
+
+- **Version:** `app/version.js` sets `window.IELTS_VERSION = "X.Y.Z"` (semver). It is the only place the version lives.
+- **Publishing a release** (tag must equal `"v" + IELTS_VERSION`):
+  1. Bump `app/version.js` (e.g. `"1.1.0"`), commit, `git push origin main`.
+  2. `gh release create v1.1.0 --title "v1.1.0" --notes "..."` (creates the tag on the pushed commit).
+  Drafts and pre-releases are ignored by both the app and the updater.
+- **Local updater** (`scripts/auto-update.ps1`, Windows PowerShell 5.1): calls `releases/latest`; if the tag is newer than
+  `app/version.js` and `git status --porcelain` is empty, runs `git fetch origin --tags` + `git merge --ff-only <tag>`.
+  Never forces, resets or pushes; dirty tree or diverged history → logs and stops. `-DryRun`/`-WhatIf` only reports.
+  Logs to `scripts/auto-update.log`; writes `app/update-status.js`
+  (`window.IELTS_UPDATE_STATUS = {checkedAt, localVersion, latestVersion, result, message}`, result ∈
+  `up-to-date|updated|skipped-dirty|no-release|error`). Both files are git-ignored. Always exits 0.
+- **Scheduling:** `scripts/install-auto-update.ps1` registers the per-user task "IELTS Coach Auto Update" (daily 07:00 +
+  at logon, StartWhenAvailable) and runs it once; `uninstall-auto-update.ps1` removes it. Double-click wrappers:
+  `cai-dat-tu-dong-cap-nhat.cmd` (install), `go-tu-dong-cap-nhat.cmd` (uninstall), `cap-nhat-ngay.cmd` (run now).
+- **In-app:** `version.js` injects `<script src="update-status.js">` with `onerror` ignored and fires
+  `window` event `ielts:update-status` on load. Tradeoff: on file:// Chrome/Edge still print one
+  `net::ERR_FILE_NOT_FOUND` line while the file does not exist (only before the updater's first run; the installer runs it
+  immediately). `js/update.js` (`IELTS.update.check()`) uses `/releases?per_page=10` (returns `[]` instead of a 404 when no
+  release exists), never rejects, and silently skips when offline. Boot check runs at most once per study day
+  (localStorage key `ielts-coach-update-check`, not part of the backup) and only toasts when a newer release exists.
 
 ---
 

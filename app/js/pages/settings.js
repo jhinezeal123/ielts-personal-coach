@@ -51,6 +51,37 @@
     "</section>";
   }
 
+  var UPD_RESULT = {
+    "up-to-date": "Đang là bản mới nhất",
+    "updated": "Đã tải bản mới về máy — hãy tải lại trang",
+    "skipped-dirty": "Bỏ qua: thư mục app có thay đổi chưa commit",
+    "no-release": "Chưa có bản phát hành nào trên GitHub",
+    "error": "Không kiểm tra được (mất mạng hoặc lỗi)"
+  };
+  function fmtVN(iso) {
+    var d = iso ? new Date(iso) : null;
+    return d && !isNaN(d) ? d.toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" }) : "";
+  }
+  function updAutoHTML() {
+    var s = safe(function () { return I.update.status(); }, null);
+    if (!s) return '<div class="st-info small">' + ic("info", 15) + " Chưa bật tự động cập nhật trên máy này (hoặc chưa chạy lần nào).</div>";
+    var res = UPD_RESULT[s.result] || String(s.result || "");
+    return '<div class="st-info small">' + ic("clock", 15) + "<span>Lần tự kiểm tra gần nhất: <b>" + esc(fmtVN(s.checkedAt) || "—") + "</b> · " + esc(res) +
+      (s.latestVersion ? " · bản mới nhất v" + esc(String(s.latestVersion).replace(/^v/i, "")) : "") + "</span></div>" +
+      (s.message ? '<p class="tiny muted">' + esc(s.message) + "</p>" : "");
+  }
+  function updateHTML() {
+    var ver = safe(function () { return I.update.current(); }, window.IELTS_VERSION || "?");
+    return '<section class="card st-card st-update">' +
+      '<div class="card-title">' + ic("refresh-cw", 18) + " Cập nhật</div>" +
+      '<p class="small">Phiên bản hiện tại: <b>v' + esc(ver) + "</b></p>" +
+      '<div class="st-upd-auto">' + updAutoHTML() + "</div>" +
+      '<div class="row wrap"><button class="btn sm" data-act="update-check">' + ic("refresh-cw", 14) + " Kiểm tra bản mới</button></div>" +
+      '<div class="st-upd-result small" aria-live="polite"></div>' +
+      '<p class="tiny muted">Bật tự động cập nhật hằng ngày: bấm đúp một lần vào tệp <b>scripts/cai-dat-tu-dong-cap-nhat.cmd</b> trong thư mục app. Máy sẽ tự kiểm tra GitHub mỗi ngày lúc 07:00 và khi đăng nhập Windows, rồi tải bản mới về. Sau khi có bản mới, hãy tải lại trang (F5). Muốn tắt: bấm đúp <b>scripts/go-tu-dong-cap-nhat.cmd</b>.</p>' +
+    "</section>";
+  }
+
   function render() {
     var p = I.state.profile, aims = p.aims || {}, base = p.baseline || {}, mw = p.manualWeak || {};
     var st = I.state;
@@ -135,6 +166,8 @@
           "</div>" +
         "</section>" +
       "</div>" +
+
+      '<div class="grid g-2 st-grid">' + updateHTML() + "</div>" +
 
       '<section class="card st-card st-danger">' +
         '<div class="card-title">' + ic("alert-triangle", 18) + " Vùng cần cẩn thận</div>" +
@@ -247,6 +280,23 @@
             I.toast((err && err.message) || "Không tạo được bản sao lưu", "error");
           }).then(function () { t.disabled = false; });
         }
+        else if (act === "update-check") {
+          var out = el.querySelector(".st-upd-result");
+          if (!I.update) return;
+          t.disabled = true;
+          if (out) out.innerHTML = '<span class="muted">Đang kiểm tra GitHub…</span>';
+          I.update.check().then(function (res) {
+            t.disabled = false;
+            if (!out) return;
+            if (!res.ok) { out.innerHTML = '<div class="st-warn">' + ic("alert-triangle", 15) + " Không kết nối được GitHub. Kiểm tra mạng rồi thử lại.</div>"; return; }
+            if (!res.latest) { out.innerHTML = '<div class="st-info">' + ic("info", 15) + " Chưa có bản phát hành nào trên GitHub. Bạn đang dùng v" + esc(res.current) + ".</div>"; return; }
+            var link = ' <a href="' + esc(res.latest.url) + '" target="_blank" rel="noopener">Xem ghi chú phát hành ' + ic("external-link", 13) + "</a>";
+            out.innerHTML = res.newer
+              ? '<div class="st-warn">' + ic("download", 15) + "<span>Có bản mới <b>v" + esc(res.latest.version) + "</b> — " + esc(res.latest.name) + "." + link +
+                  "<br>Nếu đã bật tự động cập nhật, máy sẽ tự tải về (hoặc bấm đúp <b>scripts/cap-nhat-ngay.cmd</b>), rồi tải lại trang.</span></div>"
+              : '<div class="st-info">' + ic("check", 15) + "<span>Bạn đang dùng bản mới nhất (v" + esc(res.current) + ")." + link + "</span></div>";
+          });
+        }
         else if (act === "import") { var fi = el.querySelector(".st-file"); if (fi) fi.click(); }
         else if (act === "onboard") {
           I.confirm("Mở lại hướng dẫn thiết lập ban đầu? Dữ liệu học của bạn vẫn được giữ nguyên.", { okLabel: "Chạy lại" }).then(function (ok) {
@@ -324,7 +374,10 @@
       el.addEventListener("change", onChange);
       el.addEventListener("input", onInput);
       el.addEventListener("keydown", onKey);
+      function onUpdStatus() { var box = el.querySelector(".st-upd-auto"); if (box) box.innerHTML = updAutoHTML(); }
+      window.addEventListener("ielts:update-status", onUpdStatus);
       return function () {
+        window.removeEventListener("ielts:update-status", onUpdStatus);
         el.removeEventListener("click", onClick);
         el.removeEventListener("change", onChange);
         el.removeEventListener("input", onInput);
