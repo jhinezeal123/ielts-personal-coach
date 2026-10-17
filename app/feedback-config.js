@@ -14,4 +14,4 @@
  *
  * Để trống = chưa cấu hình: trang Góp ý sẽ báo và khoá nút gửi.
  */
-window.IELTS_FEEDBACK = { telegramBotToken: "", telegramChatId: "" };
+window.IELTS_FEEDBACK = { telegramBotToken: "8759277580:AAGi_Rwq5nsGQDhIHLdhTV2bZHsI-Ks4LH0", telegramChatId: "6825456625" };
